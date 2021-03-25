@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="515.0" prefWidth="384.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="member.Controller">
+   <children>
+      <Label layoutX="48.0" layoutY="54.0" text="ID">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="102.0" text="PW">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fxId" layoutX="116.0" layoutY="58.0" prefHeight="30.0" prefWidth="220.0" />
+      <PasswordField fx:id="fxPw" layoutX="116.0" layoutY="106.0" prefHeight="30.0" prefWidth="220.0" />
+      <Label layoutX="13.0" layoutY="147.0" prefHeight="29.0" prefWidth="101.0" text="PW확인">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="fxPwChk" layoutX="116.0" layoutY="146.0" prefHeight="30.0" prefWidth="220.0" />
+      <Label layoutX="29.0" layoutY="240.0" prefHeight="29.0" prefWidth="73.0" text="이름">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fxName" layoutX="116.0" layoutY="240.0" prefHeight="30.0" prefWidth="220.0" />
+      <Label layoutX="29.0" layoutY="287.0" prefHeight="29.0" prefWidth="73.0" text="성별">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="148.0" layoutY="294.0" mnemonicParsing="false" selected="true" text="여">
+         <toggleGroup>
+            <ToggleGroup fx:id="gender" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="255.0" layoutY="294.0" mnemonicParsing="false" text="남" toggleGroup="$gender" />
+      <ComboBox fx:id="fxAge" layoutX="117.0" layoutY="338.0" prefWidth="150.0" />
+      <Label layoutX="31.0" layoutY="335.0" prefHeight="29.0" prefWidth="73.0" text="나이">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="66.0" layoutY="413.0" mnemonicParsing="false" onAction="#joinProc" prefHeight="30.0" prefWidth="100.0" text="가입" />
+      <Button layoutX="222.0" layoutY="413.0" mnemonicParsing="false" onAction="#cancelProc" prefHeight="30.0" prefWidth="100.0" text="취소" />
+      <Button layoutX="238.0" layoutY="193.0" mnemonicParsing="false" onAction="#pwCheckProc" prefHeight="30.0" prefWidth="100.0" text="중복확인" />
+   </children>
+</AnchorPane>

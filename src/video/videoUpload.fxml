@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+
+
+<AnchorPane prefHeight="404.0" prefWidth="517.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="video.VideoController">
+   <children>
+      <Button layoutX="91.0" layoutY="344.0" mnemonicParsing="false" onAction="#selectVideoProc" text="동영상 선택" />
+      <MediaView fitHeight="200.0" fitWidth="200.0" layoutX="159.0" layoutY="48.0" />
+      <Label layoutX="186.0" layoutY="348.0" text="경로" />
+      <Button layoutX="351.0" layoutY="344.0" mnemonicParsing="false" onAction="#uploadVideoProc" text="업로드" />
+   </children>
+</AnchorPane>
