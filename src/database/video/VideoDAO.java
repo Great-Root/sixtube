@@ -1,5 +1,9 @@
 package database.video;
 
-public class VideoDAO {
+import model.MemberDTO;
+
+public interface VideoDAO {
+
+	int saveMember();
 
 }

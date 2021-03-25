@@ -1,5 +1,9 @@
 package database.member;
 
-public class MemberDAO {
+import model.MemberDTO;
+
+public interface MemberDAO {
+
+	int saveMember(MemberDTO dto);
 
 }

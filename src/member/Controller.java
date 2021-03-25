@@ -9,11 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import member.service.MemberService;
 import member.service.MemberServiceImpl;
-import video.VideoStage;
 
 public class Controller implements Initializable {
 	Parent root;
 	MemberService ms;
+	
 	
 	public static CommonService cs;
 	static {
