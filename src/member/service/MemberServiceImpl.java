@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
 	//chb에 펄스면 둘다 클리어 아이디에 포커스
 	
 	@Override
-	public void login(Parent root) {
+	public boolean login(Parent root) {
 	
 		TextField id=(TextField)root.lookup("#fxId");
 		PasswordField pwd=(PasswordField)root.lookup("#fxPw");
@@ -58,20 +58,10 @@ public class MemberServiceImpl implements MemberService{
 					pwd.clear();
 					pwd.requestFocus();
 				}
-			
-				
-//				if(chb==true) {
-//					pwd.clear();
-//					pwd.requestFocus();
-//				}else {
-//					id.clear();
-//					pwd.clear();
-//					id.requestFocus();
-//			}
 			}
 		}
 		
-		
+		return true;
 	}
 
 	@Override
@@ -79,7 +69,7 @@ public class MemberServiceImpl implements MemberService{
 		//회원가입->가입 버튼눌렀을때
 		
 		boolean gender=getGender();
-		System.out.println("성별(true=남, false=여) : "+gender);
+		System.out.println("성별(true=여, false=남) : "+gender);
 		
 		String age=getComboBox();
 		System.out.println("나이 : "+age);
@@ -97,13 +87,13 @@ public class MemberServiceImpl implements MemberService{
 		dto.setId(id.getText());
 		dto.setPw(pw.getText());
 		dto.setName(name.getText());
+		dto.setAge(age);
 	
-		//dto.setAge(age);
-		//dto.setPw2(pw2.getText());
+		
 		if(gender) {
-			dto.setGender(0);
+			dto.setGender(0);//여
 		}else {
-			dto.setGender(1);
+			dto.setGender(1);//남
 		}
 		
 		MemberDAO ds=new MemberDAOImpl();

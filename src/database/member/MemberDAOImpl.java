@@ -31,7 +31,7 @@ public class MemberDAOImpl implements MemberDAO {
 			ps.setString(2, dto.getPw());
 			ps.setString(3, dto.getName());
 			ps.setInt(4, dto.getGender());
-			ps.setInt(5, dto.getAge());
+			ps.setString(5, dto.getAge());
 			
 			result = ps.executeUpdate();
 			

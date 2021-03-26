@@ -17,7 +17,7 @@ public class Controller implements Initializable {
 	MemberService ms;
 	MemberMain mm;
 	
-	
+	//VideoStage s = new VideoStage();
 	
 	public static CommonService cs;
 	static {
@@ -35,7 +35,11 @@ public class Controller implements Initializable {
 	}
 	public void loginProc() {
 		System.out.println("로그인");
-		ms.login(root);
+	//	ms.login(root);
+		if(ms.login(root)) {
+			//s.showVideoList();
+		}
+		
 	}
 	public void registerProc() {
 		System.out.println("가입화면전환");
