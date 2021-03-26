@@ -17,9 +17,9 @@ public class VideoStage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Scene scene = new Scene(root); 
+		Scene scene = new Scene(root);
 		
-		VideoController controller = loader.getController();
+		VideoListController controller = loader.getController();
 		controller.setRoot(root);
 		
 		stage.setScene(scene);
@@ -28,23 +28,6 @@ public class VideoStage {
 	public void showVideoView() {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("videoView.fxml"));
-		Parent root = null;
-		try {
-			root = loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene scene = new Scene(root); 
-		
-		VideoController controller = loader.getController();
-		controller.setRoot(root);
-		
-		stage.setScene(scene);
-		stage.show();
-	}
-	public void showVideoUpload() {
-		Stage stage = new Stage();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("videoUpload.fxml"));
 		Parent root = null;
 		try {
 			root = loader.load();

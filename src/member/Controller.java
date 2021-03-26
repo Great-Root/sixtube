@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import member.service.MemberService;
 import member.service.MemberServiceImpl;
+import video.VideoStage;
 
 public class Controller implements Initializable {
 	Parent root;
@@ -31,7 +32,9 @@ public class Controller implements Initializable {
 		System.out.println("로그인");
 	}
 	public void registerProc() {
+		VideoStage s = new VideoStage();
 		System.out.println("가입화면전환");
+		s.showVideoList();
 	}
 	public void cancelProc() {
 		Controller.cs.exit(root);

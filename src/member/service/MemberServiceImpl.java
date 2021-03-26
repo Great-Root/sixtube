@@ -5,8 +5,8 @@ import javafx.scene.Parent;
 public class MemberServiceImpl implements MemberService{
 
 	@Override
-	public void login(Parent root) {
-		
+	public boolean login(Parent root) {
+		return true;
 	}
 
 	@Override
