@@ -13,6 +13,7 @@ import member.service.MemberServiceImpl;
 public class Controller implements Initializable {
 	Parent root;
 	MemberService ms;
+	MemberMain mm;
 	
 	
 	public static CommonService cs;
@@ -26,12 +27,17 @@ public class Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ms = new MemberServiceImpl();
+		mm=new MemberMain();
+
 	}
 	public void loginProc() {
 		System.out.println("로그인");
+		ms.login(root);
 	}
 	public void registerProc() {
 		System.out.println("가입화면전환");
+		mm.setMemberStage();
+		
 	}
 	public void cancelProc() {
 		Controller.cs.exit(root);

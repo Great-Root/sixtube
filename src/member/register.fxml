@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="515.0" prefWidth="384.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="member.Controller">
+<AnchorPane prefHeight="515.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="member.MemberController">
    <children>
       <Label layoutX="48.0" layoutY="54.0" text="ID">
          <font>
