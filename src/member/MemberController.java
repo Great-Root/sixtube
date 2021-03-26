@@ -23,12 +23,12 @@ public class MemberController implements Initializable{
 	}
 	
 	public void joinProc() { //회원가입 버튼
-		//ms.memberShip();
+		ms.join();
 	}
 	public void cancelProc() {
 		ms.memberClose();
 	}
 	public void pwCheckProc() {//패스워드 확인 버튼
-		//ms.checkPw();
+		ms.checkPw();
 	}
 }

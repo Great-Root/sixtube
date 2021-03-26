@@ -5,8 +5,10 @@ import java.util.ResourceBundle;
 
 import common.CommonClass;
 import common.CommonService;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.CheckBox;
 import member.service.MemberService;
 import member.service.MemberServiceImpl;
 
@@ -14,6 +16,7 @@ public class Controller implements Initializable {
 	Parent root;
 	MemberService ms;
 	MemberMain mm;
+	
 	
 	
 	public static CommonService cs;

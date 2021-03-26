@@ -36,19 +36,19 @@
          </font>
       </Label>
       <TextField fx:id="fxName" layoutX="116.0" layoutY="240.0" prefHeight="30.0" prefWidth="220.0" />
-      <Label layoutX="29.0" layoutY="287.0" prefHeight="29.0" prefWidth="73.0" text="성별">
+      <Label layoutX="37.0" layoutY="336.0" prefHeight="29.0" prefWidth="73.0" text="성별">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <RadioButton layoutX="148.0" layoutY="294.0" mnemonicParsing="false" selected="true" text="여">
+      <RadioButton fx:id="rdoWoman" layoutX="156.0" layoutY="343.0" mnemonicParsing="false" selected="true" text="여">
          <toggleGroup>
             <ToggleGroup fx:id="gender" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="255.0" layoutY="294.0" mnemonicParsing="false" text="남" toggleGroup="$gender" />
-      <ComboBox fx:id="fxAge" layoutX="117.0" layoutY="338.0" prefWidth="150.0" />
-      <Label layoutX="31.0" layoutY="335.0" prefHeight="29.0" prefWidth="73.0" text="나이">
+      <RadioButton fx:id="rdoMan" layoutX="263.0" layoutY="343.0" mnemonicParsing="false" text="남" toggleGroup="$gender" />
+      <ComboBox fx:id="fxAge" layoutX="139.0" layoutY="294.0" prefWidth="150.0" />
+      <Label layoutX="23.0" layoutY="290.0" prefHeight="29.0" prefWidth="108.0" text="출생연도">
          <font>
             <Font size="24.0" />
          </font>
