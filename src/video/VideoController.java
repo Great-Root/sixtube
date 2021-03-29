@@ -6,18 +6,20 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import video.service.VideoService;
+import video.service.VideoServiceImpl;
 
 public class VideoController implements Initializable {
 	Parent root;
 	VideoStage vs;
 	VideoService service;
+	
 	public void setRoot(Parent root) {
 		this.root = root;
-		service.setVideo(root, "../resources/media/video.m4v");
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		vs = new VideoStage();
+		service = new VideoServiceImpl();
 	}
 	
 	public void playProc() {
@@ -44,5 +46,13 @@ public class VideoController implements Initializable {
 		System.out.println("10초 전");
 		service.minusProc();
 	}
+	public void setVideo(Parent root, String vpath) {
+		service.setRoot(root);
+		System.out.println(vpath);
+		service.setVideo(vpath);
+	}
+	
+	
+	
 	
 }

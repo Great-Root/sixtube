@@ -1,10 +1,17 @@
 package video.service;
 
 import javafx.scene.Parent;
+import java.util.ArrayList;
+import model.VideoDTO;
+import model.CommentDTO;
 
 public interface VideoService {
+	
+	public void setRoot(Parent root);
 
-	void imgView();
+	public void getVideo(String vpath);
+
+	ArrayList<VideoDTO> getVideoList();
 	//재생,일시정지,정지,볼륨, 10초후, 10초전
 	public void playProc();
 	public void pauseProc();
@@ -12,6 +19,17 @@ public interface VideoService {
 	public void volumnProc();
 	public void plusProc();
 	public void minusProc();
-	public void setVideo(Parent root, String mediaName);
+	public void setVideo(String mediaName);
 	
+
+	//CommentDAO Comments 넘겨주고
+	void sendComments(CommentDTO dto);
+
+	//CommentDAO로 CommentList 넘겨줌
+	ArrayList<CommentDTO> getCommentList(int vnum);
+	
+	//revise
+	void commentsRevise(int num);
+	//delete
+	void commentsDelete(int cnum);
 }

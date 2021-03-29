@@ -12,6 +12,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import member.Controller;
 import model.MemberDTO;
+import video.VideoStage;
 
 
 public class MemberServiceImpl implements MemberService{
@@ -23,6 +24,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public boolean login(Parent root) {
 	
+		boolean result = false;
 		TextField id=(TextField)root.lookup("#fxId");
 		PasswordField pwd=(PasswordField)root.lookup("#fxPw");
 		CheckBox chb=(CheckBox)root.lookup("#fxCheck");
@@ -45,9 +47,9 @@ public class MemberServiceImpl implements MemberService{
 			pwd.clear();
 		}else {
 			if(dbPwd.equals(pwd.getText())) {
-				Controller.cs.alert("인증통과");
-				id.clear();
-				pwd.clear();
+				
+				Controller.cs.exit(root);
+				result = true;
 			}else {
 				Controller.cs.alert("비밀번호가 틀렸습니다.");
 				if(chb.isSelected()==false) {
@@ -61,7 +63,7 @@ public class MemberServiceImpl implements MemberService{
 			}
 		}
 		
-		return true;
+		return result;
 	}
 
 	@Override
@@ -102,10 +104,13 @@ public class MemberServiceImpl implements MemberService{
 			Controller.cs.alert("성공적으로 가입되었습니다.");
 			Controller.cs.exit(root);
 		}else {
-			Controller.cs.alert("가입에 실패했습니다.");
+			Controller.cs.alert("가입에 실패했습니다.");		
 		}
 	
-	}
+	} 
+
+
+	
 
 	@Override
 	public void setRoot(Parent root) {
@@ -143,6 +148,7 @@ public class MemberServiceImpl implements MemberService{
 		RadioButton woman=(RadioButton)root.lookup("#rdoWoman");
 		return woman.isSelected();
 	}
+
 	
 	public void addComboBox() {
 		ComboBox<String> cmb=((ComboBox<String>)root.lookup("#fxAge"));

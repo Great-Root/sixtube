@@ -1,5 +1,7 @@
 package video.service;
 
+import java.util.ArrayList;
+
 import database.video.VideoDAO;
 import database.video.VideoDAOImpl;
 import javafx.scene.Parent;
@@ -12,25 +14,65 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
+import javafx.scene.image.ImageView;
+import model.VideoDTO;
+import video.VideoStage;
+import model.CommentDTO;
 
-public class VideoServiceImpl implements VideoService{
+public class VideoServiceImpl implements VideoService {
+
 	VideoDAO dao = new VideoDAOImpl();
 	Parent root;
 	MediaPlayer videoPlayer;
-	MediaView videoView;
+	
 	Button btnPlay,btnPause,btnStop,btnPlus,btnMinus;
 	Label labelTime;
 	ProgressBar progressBar;
 	ProgressIndicator progressIndicator;
 	Slider slider;
 	
+	VideoStage vs = new VideoStage();
+
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
+
 	@Override
-	public void imgView() {
-		System.out.println("서비스에서 실행됩니다");
+	public void getVideo(String vpath) {
+		vs.showVideoView(vpath);
 	}
+
+	@Override
+	public ArrayList<VideoDTO> getVideoList() {
+		return dao.getVideoList();
+	}
+
+	@Override
+	public void sendComments(CommentDTO dto) {
+
+		dao.contentUpload(dto);
+
+	}
+
+	@Override
+	public ArrayList<CommentDTO> getCommentList(int vnum) {
+
+		return dao.getCommentList(vnum);
+	}
+
+	@Override
+	public void commentsRevise(int cnum) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void commentsDelete(int cnum) {
+		// TODO Auto-generated method stub
+
+	}
+
+	
 	@Override 
 	public void playProc() {
 		//플레이
@@ -60,28 +102,42 @@ public class VideoServiceImpl implements VideoService{
 		videoPlayer.seek(videoPlayer.getCurrentTime().add(Duration.seconds(-10)));
 	}
 	@Override
-	public void setVideo(Parent root, String mediaName) {
-		setVideoController(root);
-		Media media = new Media(getClass().getResource(mediaName).toString());
+	public void setVideo(String mediaName) {
+		MediaView videoView = (MediaView)root.lookup("#fxMediaView");
+		btnPlay = (Button)root.lookup("#btnPlay");
+		btnPause = (Button)root.lookup("#btnPause");
+		btnStop = (Button)root.lookup("#btnStop");
+		btnPlus = (Button)root.lookup("#btnPlus");
+		btnMinus = (Button)root.lookup("#btnMinus");
+		
+		
+		//labelTime =(Label)root.lookup("#labelTime");
+		progressBar =(ProgressBar)root.lookup("#progressBar");
+		progressIndicator =(ProgressIndicator)root.lookup("#progressIndicator");
+		slider = (Slider)root.lookup("#slider");
+		System.out.println(getClass().getResource(mediaName));
+		System.out.println(mediaName);
+		Media media = new Media(getClass().getResource("../"+mediaName).toString());
 		videoPlayer = new MediaPlayer(media);
 		videoView.setMediaPlayer(videoPlayer);
 			
 		videoPlayer.setOnReady(()->{
 		//버튼 비활성화 여부
+			
 		btnPlay.setDisable(false);
 		btnPause.setDisable(true);
 		btnStop.setDisable(true);
 		btnPlus.setDisable(true);
 		btnMinus.setDisable(true);
 		
-		/*videoPlayer.currentTimeProperty().addListener((obj,oldValue,newValue)->{
+		videoPlayer.currentTimeProperty().addListener((obj,oldValue,newValue)->{
 			double progress = 
 			videoPlayer.getCurrentTime().toSeconds() / videoPlayer.getTotalDuration().toSeconds();
 			progressBar.setProgress(progress);
 			progressIndicator.setProgress(progress);
-			labelTime.setText( (int)videoPlayer.getCurrentTime().toSeconds()+" / "+
-					(int)videoPlayer.getTotalDuration().toSeconds()+" sec");
-			});*/
+			//labelTime.setText( (int)videoPlayer.getCurrentTime().toSeconds()+" / "+
+					//(int)videoPlayer.getTotalDuration().toSeconds()+" sec");
+			});
 		});
 		videoPlayer.setOnPlaying(()->{
 			btnPlay.setDisable(true);
@@ -117,19 +173,5 @@ public class VideoServiceImpl implements VideoService{
 			
 	}
 
-	private void setVideoController(Parent root) {
-		videoView = (MediaView)root.lookup("#fxMediaView");
-		btnPlay = (Button)root.lookup("#btnPlay");
-		btnPause = (Button)root.lookup("#btnPause");
-		btnStop = (Button)root.lookup("#btnStop");
-		btnPlus = (Button)root.lookup("#btnPlus");
-		btnMinus = (Button)root.lookup("#btnMinus");
-		
-		
-		//labelTime =(Label)root.lookup("#labelTime");
-		progressBar =(ProgressBar)root.lookup("#progressBar");
-		progressIndicator =(ProgressIndicator)root.lookup("#progressIndicator");
-		slider = (Slider)root.lookup("#slider");
-	}
 }
 

@@ -1,67 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox prefHeight="682.0" prefWidth="299.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="video.VideoListController">
+<VBox prefHeight="690.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoListController">
    <children>
-      <VBox prefHeight="217.0" prefWidth="299.0">
+      <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ImageView fx:id="fxImg0" fitHeight="171.0" fitWidth="299.0" onMouseClicked="#imgClickProc" pickOnBounds="true" preserveRatio="true" />
-            <ProgressBar fx:id="progress0" prefHeight="88.0" prefWidth="299.0" progress="0.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox prefHeight="218.0" prefWidth="294.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="75.0" text="플레이 타임" />
-                  <Label fx:id="labelTime0" prefHeight="24.0" prefWidth="104.0" text="0/0 sec" />
+                  <ImageView fx:id="fxImg0" fitHeight="208.0" fitWidth="299.0" onMouseClicked="#imgClickProc" pickOnBounds="true" preserveRatio="true" />
+                  <ProgressBar fx:id="progress1" prefHeight="88.0" prefWidth="299.0" progress="0.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="75.0" text="플레이 타임" />
+                        <Label fx:id="labelTime1" prefHeight="24.0" prefWidth="104.0" text="0/0 sec" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="14.0" prefWidth="75.0" text="제목" />
+                        <Label fx:id="labelTitle0" prefHeight="24.0" prefWidth="104.0" text="제목이 들어갈 자리" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            </VBox>
+            <VBox prefHeight="236.0" prefWidth="295.0">
                <children>
-                  <Label prefHeight="14.0" prefWidth="75.0" text="제목" />
-                  <Label fx:id="labelTitle0" prefHeight="24.0" prefWidth="104.0" text="제목이 들어갈 자리" />
+                  <TableView fx:id="fxTable0" prefHeight="263.0" prefWidth="295.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="ID">
+                      	 <cellValueFactory>
+                      		 <PropertyValueFactory property="userId" />
+                      	 </cellValueFactory>
+                      </TableColumn>
+                      <TableColumn prefWidth="219.0" text="Comments">
+                      	<cellValueFactory>
+                      		 <PropertyValueFactory property="content" />
+                      	 </cellValueFactory>
+                      </TableColumn>
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="fxComments0" onAction="#onEnter" prefHeight="33.0" prefWidth="200.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#reviseProc" text="수정">
+                           <HBox.margin>
+                              <Insets bottom="3.0" left="6.0" right="3.0" top="3.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#deleteProc" text="삭제">
+                           <HBox.margin>
+                              <Insets left="180.0" top="3.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
-      </VBox>
-      <VBox prefHeight="217.0" prefWidth="299.0">
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ImageView fx:id="fxImg1" fitHeight="171.0" fitWidth="299.0" onMouseClicked="#imgClickProc" pickOnBounds="true" preserveRatio="true" />
-            <ProgressBar fx:id="progress1" prefHeight="88.0" prefWidth="299.0" progress="0.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox prefHeight="218.0" prefWidth="294.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="75.0" text="플레이 타임" />
-                  <Label fx:id="labelTime1" prefHeight="24.0" prefWidth="104.0" text="0/0 sec" />
+                  <ImageView fx:id="fxImg1" fitHeight="208.0" fitWidth="299.0" onMouseClicked="#imgClickProc" pickOnBounds="true" preserveRatio="true" />
+                  <ProgressBar fx:id="progress11" prefHeight="88.0" prefWidth="299.0" progress="0.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="75.0" text="플레이 타임" />
+                        <Label fx:id="labelTime11" prefHeight="24.0" prefWidth="104.0" text="0/0 sec" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="14.0" prefWidth="75.0" text="제목" />
+                        <Label fx:id="labelTitle1" prefHeight="24.0" prefWidth="104.0" text="제목이 들어갈 자리" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            </VBox>
+            <VBox prefHeight="236.0" prefWidth="295.0">
                <children>
-                  <Label prefHeight="14.0" prefWidth="75.0" text="제목" />
-                  <Label fx:id="labelTitle1" prefHeight="24.0" prefWidth="104.0" text="제목이 들어갈 자리" />
+                  <TableView fx:id="fxTable1" prefHeight="263.0" prefWidth="295.0">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="userId" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="219.0" text="Comments">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="content" />
+                           </cellValueFactory>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
+                  <TextField fx:id="fxComments1" onAction="#onEnter" prefHeight="33.0" prefWidth="200.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#reviseProc" text="수정">
+                           <HBox.margin>
+                              <Insets bottom="3.0" left="6.0" right="3.0" top="3.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#deleteProc" text="삭제">
+                           <HBox.margin>
+                              <Insets left="180.0" top="3.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
-      </VBox>
-      <VBox prefHeight="217.0" prefWidth="299.0">
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ImageView fx:id="fxImg2" fitHeight="171.0" fitWidth="299.0" onMouseClicked="#imgClickProc" pickOnBounds="true" preserveRatio="true" />
-            <ProgressBar fx:id="progress2" prefHeight="88.0" prefWidth="299.0" progress="0.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox prefHeight="218.0" prefWidth="294.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="75.0" text="플레이 타임" />
-                  <Label fx:id="labelTime2" prefHeight="24.0" prefWidth="104.0" text="0/0 sec" />
+                  <ImageView fx:id="fxImg2" fitHeight="208.0" fitWidth="299.0" onMouseClicked="#imgClickProc" pickOnBounds="true" preserveRatio="true" />
+                  <ProgressBar fx:id="progress12" prefHeight="88.0" prefWidth="299.0" progress="0.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="75.0" text="플레이 타임" />
+                        <Label fx:id="labelTime12" prefHeight="24.0" prefWidth="104.0" text="0/0 sec" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="14.0" prefWidth="75.0" text="제목" />
+                        <Label fx:id="labelTitle2" prefHeight="24.0" prefWidth="104.0" text="제목이 들어갈 자리" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            </VBox>
+            <VBox prefHeight="236.0" prefWidth="295.0">
                <children>
-                  <Label prefHeight="14.0" prefWidth="75.0" text="제목" />
-                  <Label fx:id="labelTitle2" prefHeight="24.0" prefWidth="104.0" text="제목이 들어갈 자리" />
+                  <TableView fx:id="fxTable2" prefHeight="263.0" prefWidth="295.0">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="userId" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="219.0" text="Comments">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="content" />
+                           </cellValueFactory>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
+                  <TextField fx:id="fxComments2" onAction="#onEnter" prefHeight="33.0" prefWidth="200.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#reviseProc" text="수정">
+                           <HBox.margin>
+                              <Insets bottom="3.0" left="6.0" right="3.0" top="3.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#deleteProc" text="삭제">
+                           <HBox.margin>
+                              <Insets left="180.0" top="3.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </VBox>
