@@ -22,9 +22,11 @@ public class VideoStage {
 		VideoListController controller = loader.getController();
 		controller.setRoot(root);
 		controller.setImg();
+		controller.setListView();
 		stage.setScene(scene);
 		stage.show();
 	}
+	
 	public void showVideoView(String videoId) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("videoView.fxml"));

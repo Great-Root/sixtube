@@ -36,5 +36,10 @@ public class VideoDTO {
 	public void setThpath(String thpath) {
 		this.thpath = thpath;
 	}
+	@Override
+	public String toString() {
+		return "VideoDTO [vnum=" + vnum + ", title=" + title + ", likes=" + likes + ", vpath=" + vpath + ", thpath="
+				+ thpath + "]";
+	}
 
 }

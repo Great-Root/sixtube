@@ -12,6 +12,7 @@ import javafx.scene.media.MediaView;
 public class VideoController implements Initializable {
 	Parent root;
 	VideoStage vs;
+	
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
@@ -39,5 +40,8 @@ public class VideoController implements Initializable {
 		mv.setMediaPlayer(player);
 		player.play();
 	}
+	
+	
+	
 	
 }
