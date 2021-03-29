@@ -8,4 +8,10 @@ public interface MemberService {
 	
 	public void join();
 
+	public void setRoot(Parent root);
+	public void memberClose();
+	public void checkPw();
+
+	
+
 }
