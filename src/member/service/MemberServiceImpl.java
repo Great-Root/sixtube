@@ -102,10 +102,10 @@ public class MemberServiceImpl implements MemberService{
 			Controller.cs.alert("성공적으로 가입되었습니다.");
 			Controller.cs.exit(root);
 		}else {
-			Controller.cs.alert("가입에 실패했습니다.");
+			Controller.cs.alert("가입에 실패했습니다.");		
 		}
 	
-	}
+	} 
 
 	@Override
 	public void setRoot(Parent root) {
