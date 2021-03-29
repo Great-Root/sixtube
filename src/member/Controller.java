@@ -5,16 +5,19 @@ import java.util.ResourceBundle;
 
 import common.CommonClass;
 import common.CommonService;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.CheckBox;
 import member.service.MemberService;
 import member.service.MemberServiceImpl;
-import video.VideoStage;
 
 public class Controller implements Initializable {
 	Parent root;
 	MemberService ms;
+	MemberMain mm;
 	
+	//VideoStage s = new VideoStage();
 	
 	public static CommonService cs;
 	static {
@@ -27,14 +30,21 @@ public class Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ms = new MemberServiceImpl();
+		mm=new MemberMain();
+
 	}
 	public void loginProc() {
 		System.out.println("로그인");
+	//	ms.login(root);
+		if(ms.login(root)) {
+			//s.showVideoList();
+		}
+		
 	}
 	public void registerProc() {
-		VideoStage s = new VideoStage();
 		System.out.println("가입화면전환");
-		s.showVideoList();
+		mm.setMemberStage();
+		
 	}
 	public void cancelProc() {
 		Controller.cs.exit(root);

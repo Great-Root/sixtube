@@ -1,33 +1,67 @@
 package model;
 
+import java.sql.Timestamp;
+
 public class VideoDTO {
 	private int vnum;
+	private String vpath;
 	private String title;
+	private String uploader;
+	private int views;
+	private Timestamp vdate;
 	private int likes;
 	private int disLikes;
-	int getVnum() {
+	public int getVnum() {
 		return vnum;
 	}
-	void setVnum(int vnum) {
+	public void setVnum(int vnum) {
 		this.vnum = vnum;
 	}
-	String getTitle() {
+	public String getVpath() {
+		return vpath;
+	}
+	public void setVpath(String vpath) {
+		this.vpath = vpath;
+	}
+	public String getTitle() {
 		return title;
 	}
-	void setTitle(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
-	int getLikes() {
+	public String getUploader() {
+		return uploader;
+	}
+	public void setUploader(String uploader) {
+		this.uploader = uploader;
+	}
+	public int getViews() {
+		return views;
+	}
+	public void setViews(int views) {
+		this.views = views;
+	}
+	public Timestamp getVdate() {
+		return vdate;
+	}
+	public void setVdate(Timestamp vdate) {
+		this.vdate = vdate;
+	}
+	public int getLikes() {
 		return likes;
 	}
-	void setLikes(int likes) {
+	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-	int getDisLikes() {
+	public int getDisLikes() {
 		return disLikes;
 	}
-	void setDisLikes(int disLikes) {
+	public void setDisLikes(int disLikes) {
 		this.disLikes = disLikes;
 	}
-	
+	@Override
+	public String toString() {
+		return "VideoDTO [vnum=" + vnum + ", vpath=" + vpath + ", title=" + title + ", uploader=" + uploader
+				+ ", views=" + views + ", vdate=" + vdate + ", likes=" + likes + ", disLikes=" + disLikes + "]";
+	}
 }
