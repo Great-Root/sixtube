@@ -1,8 +1,14 @@
 package video.service;
 
+import java.util.ArrayList;
+
+import model.VideoDTO;
+
 public interface VideoService {
 
-	void imgView();
+	public void getVideo(String vpath);
+
+	ArrayList<VideoDTO> getVideoList();
 	
 	
 }

@@ -21,11 +21,11 @@ public class VideoStage {
 		
 		VideoListController controller = loader.getController();
 		controller.setRoot(root);
-		
+		controller.setImg();
 		stage.setScene(scene);
 		stage.show();
 	}
-	public void showVideoView() {
+	public void showVideoView(String videoId) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("videoView.fxml"));
 		Parent root = null;
@@ -38,6 +38,7 @@ public class VideoStage {
 		
 		VideoController controller = loader.getController();
 		controller.setRoot(root);
+		controller.setVideo(videoId);
 		
 		stage.setScene(scene);
 		stage.show();

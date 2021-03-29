@@ -5,6 +5,9 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 public class VideoController implements Initializable {
 	Parent root;
@@ -28,6 +31,13 @@ public class VideoController implements Initializable {
 	}
 	public void volumnProc() {
 		System.out.println("볼륨");
+	}
+	public void setVideo(String vpath) {
+		MediaPlayer player = new MediaPlayer(new Media(getClass().getResource(vpath).toString()));
+		MediaView mv = (MediaView)root.lookup("#fxMediaView");
+		System.out.println(vpath);
+		mv.setMediaPlayer(player);
+		player.play();
 	}
 	
 }

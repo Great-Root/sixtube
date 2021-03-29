@@ -32,7 +32,13 @@ public class VideoDAOImpl implements VideoDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				
+				VideoDTO dto = new VideoDTO();
+				dto.setVnum(rs.getInt("vnum"));
+				dto.setTitle(rs.getString("title"));
+				dto.setLikes(rs.getInt("likes"));
+				dto.setVpath(rs.getString("vpath"));
+				dto.setThpath(rs.getString("thpath"));
+				list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,6 +53,22 @@ public class VideoDAOImpl implements VideoDAO {
 
 	@Override
 	public boolean uploadVideo(VideoDTO dto) {
+		String sql = "INSERT INTO video VALUES(?,?,?,?)";
+		try {
+			Connection con = DriverManager.getConnection(url, id, pw);
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+//				VideoDTO dto = new VideoDTO();
+//				dto.setVnum(rs.getInt("vnum"));
+//				dto.setTitle(rs.getString("title"));
+//				dto.setLikes(rs.getInt("likes"));
+//				dto.setDisLikes(rs.getInt("dislikes"));
+//				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

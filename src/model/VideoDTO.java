@@ -4,30 +4,37 @@ public class VideoDTO {
 	private int vnum;
 	private String title;
 	private int likes;
-	private int disLikes;
-	int getVnum() {
+	private String vpath;
+	private String thpath;
+	public int getVnum() {
 		return vnum;
 	}
-	void setVnum(int vnum) {
+	public void setVnum(int vnum) {
 		this.vnum = vnum;
 	}
-	String getTitle() {
+	public String getTitle() {
 		return title;
 	}
-	void setTitle(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
-	int getLikes() {
+	public int getLikes() {
 		return likes;
 	}
-	void setLikes(int likes) {
+	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-	int getDisLikes() {
-		return disLikes;
+	public String getVpath() {
+		return vpath;
 	}
-	void setDisLikes(int disLikes) {
-		this.disLikes = disLikes;
+	public void setVpath(String vpath) {
+		this.vpath = vpath;
 	}
-	
+	public String getThpath() {
+		return thpath;
+	}
+	public void setThpath(String thpath) {
+		this.thpath = thpath;
+	}
+
 }
