@@ -34,6 +34,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		System.out.println("로그인 체크합니다.");
 		System.out.println("id : "+id.getText());
+		String userId=id.getText();
 		System.out.println("pwd : "+pwd.getText());
 	
 		MemberDAO ds=new MemberDAOImpl();
@@ -73,7 +74,7 @@ public class MemberServiceImpl implements MemberService{
 		boolean gender=getGender();
 		System.out.println("성별(true=여, false=남) : "+gender);
 		
-		String age=getComboBox();
+		int age=getComboBox();
 		System.out.println("나이 : "+age);
 		
 		TextField id=(TextField)root.lookup("#fxId");
@@ -151,21 +152,20 @@ public class MemberServiceImpl implements MemberService{
 
 	
 	public void addComboBox() {
-		ComboBox<String> cmb=((ComboBox<String>)root.lookup("#fxAge"));
+		ComboBox cmb=(ComboBox)root.lookup("#fxAge");
 		
 		if(cmb!=null) {
 			for(int i=1950;i<2022;i++) {
-			cmb.getItems().add(i+"년생");}
+			cmb.getItems().add(i);}
 		}
 	}
-	public String getComboBox() {
-		ComboBox<String> cmb=((ComboBox<String>)root.lookup("#fxAge"));
-		String age=cmb.getValue();
-		if(age==null) {
+	public int getComboBox() {
+		ComboBox cmb=(ComboBox)root.lookup("#fxAge");
+		int age=(int)cmb.getValue();
+		if(age==0) {
 			Controller.cs.alert("콤보박스를 선택해주세요.");
 		}
 		return age;
 	}
-
 
 }

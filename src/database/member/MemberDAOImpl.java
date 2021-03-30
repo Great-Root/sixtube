@@ -5,13 +5,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import member.service.MemberService;
+import member.service.MemberServiceImpl;
 import model.MemberDTO;
 
 public class MemberDAOImpl implements MemberDAO {
 	String url = "jdbc:oracle:thin:@3.34.231.231:1521:XE";
 	String id = "sixtube";
 	String pw = "1234";
-
+	
+	MemberServiceImpl ms;
+	
 	public MemberDAOImpl() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -31,7 +35,7 @@ public class MemberDAOImpl implements MemberDAO {
 			ps.setString(2, dto.getPw());
 			ps.setString(3, dto.getName());
 			ps.setInt(4, dto.getGender());
-			ps.setString(5, dto.getAge());
+			ps.setInt(5, dto.getAge());
 			
 			result = ps.executeUpdate();
 			
@@ -54,4 +58,6 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return null;
 	}
+	
+
 }

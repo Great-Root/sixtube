@@ -26,8 +26,22 @@
             <Image url="@../img/search.PNG" />
          </image>
       </ImageView>
-      <Button fx:id="btnShow" layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#showSlide" prefHeight="24.0" prefWidth="26.0" style="-fx-background-color: white;" text="=" />
-      <Button fx:id="btnHide" layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#hideSlide" prefHeight="24.0" prefWidth="26.0" style="-fx-background-color: white;" text="&lt;" />
+      <Button fx:id="btnShow" layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#showSlide" prefHeight="24.0" prefWidth="26.0" style="-fx-background-color: white;">
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/menu.PNG" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="btnHide" layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#hideSlide" prefHeight="32.0" prefWidth="36.0" style="-fx-background-color: white;">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/goprevious_104292.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <VBox layoutX="5.0" layoutY="85.0" prefHeight="690.0" prefWidth="594.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -199,8 +213,12 @@
       </VBox>
       <AnchorPane fx:id="paneSlide" layoutY="86.0" prefHeight="708.0" prefWidth="142.0" style="-fx-background-color: white;">
          <children>
-            <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="142.0" style="-fx-background-color: white; -fx-border-color: black;" text="회원 정보 수정" />
-            <Button layoutY="44.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="142.0" style="-fx-background-color: white; -fx-border-color: black;" text="탈퇴" />
+            <Button fx:id="btnModify" mnemonicParsing="false" onAction="#modifyProc" prefHeight="44.0" prefWidth="142.0" style="-fx-background-color: white;" text="회원 정보 수정" />
+            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/setting.PNG" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

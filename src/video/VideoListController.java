@@ -16,7 +16,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import member.ModifyMain;
 import model.VideoDTO;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -28,6 +30,7 @@ public class VideoListController implements Initializable {
 	Parent root;
 	VideoStage vs;
 	VideoService service;
+	ModifyMain mom;//
 	
 	@FXML TextField fxComments0;
 	@FXML TextField fxComments1;
@@ -48,7 +51,7 @@ public class VideoListController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		vs = new VideoStage();
 		service = new VideoServiceImpl();
-		
+		mom=new ModifyMain();//
 		
 		//for문 돌리고 싶은데 어떻게 해야할까?
 		fxComments0.setPromptText("Comments 입력하세요");
@@ -165,7 +168,18 @@ public class VideoListController implements Initializable {
 		});
 	}
 
-
+	public void modifyProc() {
+		System.out.println("회원 정보 수정");
+		try {
+			mom.start();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 
 	
 }
