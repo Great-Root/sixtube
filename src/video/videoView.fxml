@@ -6,37 +6,39 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="539.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoController">
+<AnchorPane prefHeight="613.0" prefWidth="568.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoController">
    <children>
-      <MediaView fx:id="fxMediaView" fitHeight="400.0" fitWidth="535.0" layoutX="17.0" layoutY="14.0" />
-      <HBox layoutX="3.0" layoutY="484.0" prefHeight="53.0" prefWidth="562.0">
+      <MediaView fx:id="fxMediaView" fitHeight="400.0" fitWidth="535.0" layoutX="18.0" layoutY="64.0" />
+      <HBox layoutX="3.0" layoutY="570.0" prefHeight="53.0" prefWidth="562.0">
          <children>
-            <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playProc" prefHeight="30.0" prefWidth="70.0" text="재생">
+            <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playProc" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 25;" text="재생">
                <padding>
                   <Insets left="8.0" right="8.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="btnPause" mnemonicParsing="false" onAction="#pauseProc" prefHeight="30.0" prefWidth="70.0" text="일시정지">
+            <Button fx:id="btnPause" mnemonicParsing="false" onAction="#pauseProc" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 25;" text="일시정지">
                <padding>
                   <Insets left="8.0" right="8.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="btnStop" mnemonicParsing="false" onAction="#stopProc" prefHeight="30.0" prefWidth="70.0" text="정지">
+            <Button fx:id="btnStop" mnemonicParsing="false" onAction="#stopProc" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-radius: 25; -fx-border-color: grey;" text="정지">
                <padding>
                   <Insets left="8.0" right="8.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="btnMinus" mnemonicParsing="false" onAction="#minusProc" prefHeight="30.0" prefWidth="70.0" text="10초전">
+            <Button fx:id="btnMinus" mnemonicParsing="false" onAction="#minusProc" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 25;" text="10초전">
                <padding>
                   <Insets left="8.0" right="8.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="btnPlus" mnemonicParsing="false" onAction="#plusProc" prefHeight="30.0" prefWidth="70.0" text="10초후">
+            <Button fx:id="btnPlus" mnemonicParsing="false" onAction="#plusProc" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-radius: 25; -fx-border-color: grey;" text="10초후">
                <padding>
                   <Insets left="8.0" right="8.0" top="7.0" />
                </padding>
@@ -59,8 +61,33 @@
             <Insets left="7.0" right="5.0" top="7.0" />
          </padding>
       </HBox>
-      <ProgressBar fx:id="progressBar" layoutX="45.0" layoutY="435.0" prefHeight="18.0" prefWidth="478.0" progress="0.0" />
-      <ProgressIndicator fx:id="progressIndicator" layoutX="530.0" layoutY="424.0" progress="0.0" />
-      <Label layoutX="17.0" layoutY="437.0" text="시간" />
+      <ProgressBar fx:id="progressBar" layoutX="46.0" layoutY="543.0" prefHeight="18.0" prefWidth="478.0" progress="0.0" />
+      <ProgressIndicator fx:id="progressIndicator" layoutX="531.0" layoutY="532.0" progress="0.0" />
+      <Label layoutX="18.0" layoutY="545.0" text="시간" />
+      <ImageView fitHeight="53.0" fitWidth="117.0" layoutX="66.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/logo.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="23.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/menu.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="355.0" layoutX="169.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/search.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="381.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/like.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="446.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/dislike.PNG" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

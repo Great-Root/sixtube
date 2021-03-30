@@ -4,15 +4,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import model.VideoDTO;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,6 +34,10 @@ public class VideoListController implements Initializable {
 	@FXML TextField fxComments2;
 	
 	@FXML TableView<CommentDTO> tableView;
+
+	@FXML Button btnShow;//
+	@FXML Button btnHide;//
+	@FXML AnchorPane paneSlide;//
 	
 	public String inputValue;
 	
@@ -47,7 +55,9 @@ public class VideoListController implements Initializable {
 		fxComments1.setPromptText("Comments 입력하세요");
 		fxComments2.setPromptText("Comments 입력하세요");
 		
-		
+		paneSlide.setTranslateX(-140);//
+		btnShow.setVisible(true);//
+		btnHide.setVisible(false);//
 	}
 	public void setImg() {
 		ArrayList<VideoDTO> videoList = service.getVideoList();
@@ -127,5 +137,35 @@ public class VideoListController implements Initializable {
 		service.commentsDelete(0);
 		System.out.println("삭제버튼 클릭");
 	}
+	
+	////
+	public void showSlide(MouseEvent event) {
+		TranslateTransition slide = new TranslateTransition();
+		slide.setDuration(Duration.seconds(0.4));
+		slide.setNode(paneSlide);
+		slide.setToX(0);
+		slide.play();
+		paneSlide.setTranslateX(-140);
+		slide.setOnFinished((ActionEvent e) -> {
+			btnShow.setVisible(false);
+			btnHide.setVisible(true);
+		});
+	}
+	
+	public void hideSlide(MouseEvent event) {
+		TranslateTransition slide = new TranslateTransition();
+		slide.setDuration(Duration.seconds(0.4));
+		slide.setNode(paneSlide);
+		slide.setToX(-140);
+		slide.play();
+		paneSlide.setTranslateX(0);
+		slide.setOnFinished((ActionEvent e) -> {
+			btnShow.setVisible(true);
+			btnHide.setVisible(false);
+		});
+	}
+
+
+
 	
 }
