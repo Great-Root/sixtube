@@ -61,6 +61,6 @@
       </HBox>
       <ProgressBar fx:id="progressBar" layoutX="45.0" layoutY="435.0" prefHeight="18.0" prefWidth="478.0" progress="0.0" />
       <ProgressIndicator fx:id="progressIndicator" layoutX="530.0" layoutY="424.0" progress="0.0" />
-      <Label layoutX="17.0" layoutY="437.0" text="시간" />
+      <Label layoutX="14.0" layoutY="437.0" text="시간" />
    </children>
 </AnchorPane>
