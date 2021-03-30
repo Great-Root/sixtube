@@ -36,18 +36,28 @@
             </VBox>
             <VBox prefHeight="236.0" prefWidth="295.0">
                <children>
-                  <TableView fx:id="fxTable0" prefHeight="263.0" prefWidth="295.0">
+                  <TableView fx:id="fxTable0" onMouseClicked="#click" prefHeight="263.0" prefWidth="89.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID">
+                      <TableColumn prefWidth="38.40002363920212" text="ID">
                       	 <cellValueFactory>
                       		 <PropertyValueFactory property="userId" />
                       	 </cellValueFactory>
                       </TableColumn>
-                      <TableColumn prefWidth="219.0" text="Comments">
+                      <TableColumn prefWidth="73.60004043579102" text="Comments">
                       	<cellValueFactory>
                       		 <PropertyValueFactory property="content" />
                       	 </cellValueFactory>
                       </TableColumn>
+                        <TableColumn prefWidth="66.39996337890625" text="cnum">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="cnum" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="114.4000274658203" text="vnum">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="vnum" />
+                           </cellValueFactory>
+                        </TableColumn>
                     </columns>
                   </TableView>
                   <TextField fx:id="fxComments0" onAction="#onEnter" prefHeight="33.0" prefWidth="200.0" />
@@ -91,7 +101,7 @@
             </VBox>
             <VBox prefHeight="236.0" prefWidth="295.0">
                <children>
-                  <TableView fx:id="fxTable1" prefHeight="263.0" prefWidth="295.0">
+                  <TableView fx:id="fxTable1" onMouseClicked="#click1" prefHeight="263.0" prefWidth="295.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="ID">
                            <cellValueFactory>
@@ -101,6 +111,11 @@
                         <TableColumn prefWidth="219.0" text="Comments">
                            <cellValueFactory>
                               <PropertyValueFactory property="content" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="219.0" text="cnum" visible="false">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="cnum" />
                            </cellValueFactory>
                         </TableColumn>
                      </columns>
@@ -146,7 +161,7 @@
             </VBox>
             <VBox prefHeight="236.0" prefWidth="295.0">
                <children>
-                  <TableView fx:id="fxTable2" prefHeight="263.0" prefWidth="295.0">
+                  <TableView fx:id="fxTable2" onMouseClicked="#click2" prefHeight="263.0" prefWidth="295.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="ID">
                            <cellValueFactory>
@@ -156,6 +171,11 @@
                         <TableColumn prefWidth="219.0" text="Comments">
                            <cellValueFactory>
                               <PropertyValueFactory property="content" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="219.0" text="cnum" visible="false">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="cnum" />
                            </cellValueFactory>
                         </TableColumn>
                      </columns>

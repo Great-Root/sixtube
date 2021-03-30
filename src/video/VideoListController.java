@@ -4,8 +4,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import database.member.MemberDAO;
+import database.member.MemberDAOImpl;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -13,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import member.Controller;
+import member.service.MemberServiceImpl;
 import model.VideoDTO;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -24,12 +30,15 @@ public class VideoListController implements Initializable {
 	Parent root;
 	VideoStage vs;
 	VideoService service;
+	MemberServiceImpl ms;
 	
 	@FXML TextField fxComments0;
 	@FXML TextField fxComments1;
 	@FXML TextField fxComments2;
 	
-	@FXML TableView<CommentDTO> tableView;
+	@FXML TableView<CommentDTO> fxTable0;
+	@FXML TableView<CommentDTO> fxTable1;
+	@FXML TableView<CommentDTO> fxTable2;
 	
 	public String inputValue;
 	
@@ -47,8 +56,28 @@ public class VideoListController implements Initializable {
 		fxComments1.setPromptText("Comments 입력하세요");
 		fxComments2.setPromptText("Comments 입력하세요");
 		
+//		tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//		    @Override
+//		    public void handle(MouseEvent event) {
+//		      if(event.getClickCount() > 1) {
+//		      }
+//		    }
+//		  });
 		
 	}
+	public int click(MouseEvent e) {
+		return fxTable0.getSelectionModel().getSelectedItem().getCnum();
+	}
+	public int click0() {
+		return fxTable0.getSelectionModel().getSelectedItem().getCnum();
+	}
+	public int click1() {
+		return fxTable1.getSelectionModel().getSelectedItem().getCnum();
+	}
+	public int click2() {
+		return fxTable2.getSelectionModel().getSelectedItem().getCnum();
+	}
+	
 	public void setImg() {
 		ArrayList<VideoDTO> videoList = service.getVideoList();
 		for(VideoDTO video : videoList) {
@@ -75,10 +104,11 @@ public class VideoListController implements Initializable {
 		System.out.println("tf : "+tf);
 		
 		//textField에 삽입한 값을 String 형태로 저장.
-		inputValue = tf.getText();
+		inputValue = tf.getText(); 
 		System.out.println("inputValue : "+inputValue);
 		
 		//입력 값 삭제
+		
 	
 		tf.clear();
 		//TextField내의 id값을 String id 변수에 저장.
@@ -89,9 +119,10 @@ public class VideoListController implements Initializable {
 		char ch = id.charAt(id.length()-1);
 //		Character.getNumericValue(); 메서드를 통해서 char형을 int형(vnum변수)으로 변환.
 		int vnum = Character.getNumericValue(ch);
-			
+		
+		
 		//dto (cnum,usrId,content,vnum)
-		CommentDTO dto = new CommentDTO(0,"test",inputValue,vnum);
+		CommentDTO dto = new CommentDTO(0, Controller.lu.getId(),inputValue,vnum);
 		
 		service.sendComments(dto);
 		setListView();
@@ -114,6 +145,7 @@ public class VideoListController implements Initializable {
 		}
 		
 		fxTable.setItems(list);
+		
 		}
 		
 		
@@ -124,7 +156,10 @@ public class VideoListController implements Initializable {
 	
 	public void deleteProc() {
 //		tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-		service.commentsDelete(0);
+		//클릭한 시퀀스 넘버 가져오는 메서드 작성
+		
+//		service.commentsDelete(click());
+		setListView();
 		System.out.println("삭제버튼 클릭");
 	}
 	

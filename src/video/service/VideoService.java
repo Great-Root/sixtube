@@ -30,6 +30,7 @@ public interface VideoService {
 	
 	//revise
 	void commentsRevise(int num);
+	
 	//delete
 	void commentsDelete(int cnum);
 }

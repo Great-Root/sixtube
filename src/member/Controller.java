@@ -5,22 +5,28 @@ import java.util.ResourceBundle;
 
 import common.CommonClass;
 import common.CommonService;
+import common.LoginUser;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import member.service.MemberService;
 import member.service.MemberServiceImpl;
+import video.VideoListController;
 import video.VideoStage;
 
 public class Controller implements Initializable {
 	Parent root;
 	MemberService ms;
 	MemberMain mm;
-	
 	VideoStage s = new VideoStage();
 	
+	public static LoginUser lu;
+	static {
+		lu = new LoginUser(); 
+	}
 	public static CommonService cs;
+	
 	static {
 		cs = new CommonClass();
 	}
@@ -39,6 +45,7 @@ public class Controller implements Initializable {
 		
 		if(ms.login(root)) {
 			s.showVideoList();
+			
 		}
 		
 	}

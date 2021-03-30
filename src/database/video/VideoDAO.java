@@ -27,5 +27,7 @@ public interface VideoDAO {
 
 	//데이터베이스에서 Comment정보 가져오기
 	public ArrayList<CommentDTO> getCommentList(int vnum);
+
+	public void commentsDelete(int cnum);
 	
 }

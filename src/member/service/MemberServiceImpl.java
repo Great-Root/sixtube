@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService{
 	//chb에 펄스면 둘다 클리어 아이디에 포커스
 	
 	@Override
-	public boolean login(Parent root) {
+	public boolean login(Parent root) { 
 	
 		boolean result = false;
 		TextField id=(TextField)root.lookup("#fxId");
@@ -49,6 +49,8 @@ public class MemberServiceImpl implements MemberService{
 			if(dbPwd.equals(pwd.getText())) {
 				
 				Controller.cs.exit(root);
+				//choi추가 id가져오기
+				Controller.lu.setId(id.getText());
 				result = true;
 			}else {
 				Controller.cs.alert("비밀번호가 틀렸습니다.");

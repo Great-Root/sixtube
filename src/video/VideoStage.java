@@ -2,13 +2,17 @@ package video;
 
 import java.io.IOException;
 
+import common.LoginUser;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import member.Controller;
 
 public class VideoStage {
+	
 	public void showVideoList() {
+		
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("videoList.fxml"));
 		Parent root = null;
@@ -18,6 +22,7 @@ public class VideoStage {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root);
+		
 		
 		VideoListController controller = loader.getController();
 		controller.setRoot(root);

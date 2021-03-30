@@ -68,7 +68,8 @@ public class VideoServiceImpl implements VideoService {
 
 	@Override
 	public void commentsDelete(int cnum) {
-		// TODO Auto-generated method stub
+		
+		dao.commentsDelete(cnum);
 
 	}
 
