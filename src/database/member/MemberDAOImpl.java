@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import member.Controller;
 import member.service.MemberService;
 import member.service.MemberServiceImpl;
 import model.MemberDTO;
@@ -59,5 +60,42 @@ public class MemberDAOImpl implements MemberDAO {
 		return null;
 	}
 	
-
+	public int modifyMember(MemberDTO dto) {
+		String sql = "update member set.........";
+	
+		int result=0;
+		
+		try {
+			Connection con = DriverManager.getConnection(url,id,pw);
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			//ps.setString(2, dto.getPw());
+			//ps.setString(1, dto.getId());
+			
+			result = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int deleteMember(MemberDTO dto) {
+		String sql = "delete.........";
+	
+		int result=0;
+		
+		try {
+			Connection con = DriverManager.getConnection(url,id,pw);
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			
+			
+			result = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

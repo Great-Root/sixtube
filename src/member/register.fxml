@@ -14,26 +14,26 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="566.0" prefWidth="384.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="member.MemberController">
+<AnchorPane layoutY="1.0" prefHeight="566.0" prefWidth="384.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="member.MemberController">
    <children>
       <Label layoutX="74.0" layoutY="129.0" text="ID">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="70.0" layoutY="177.0" text="PW">
+      <Label layoutX="70.0" layoutY="199.0" text="PW">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <TextField fx:id="fxId" layoutX="117.0" layoutY="123.0" prefHeight="30.0" prefWidth="197.0" />
-      <PasswordField fx:id="fxPw" layoutX="117.0" layoutY="171.0" prefHeight="30.0" prefWidth="197.0" />
-      <Label layoutX="45.0" layoutY="212.0" prefHeight="29.0" prefWidth="101.0" text="PW확인">
+      <PasswordField fx:id="fxPw" layoutX="117.0" layoutY="193.0" prefHeight="30.0" prefWidth="197.0" />
+      <Label layoutX="45.0" layoutY="234.0" prefHeight="29.0" prefWidth="101.0" text="PW확인">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <PasswordField fx:id="fxPwChk" layoutX="117.0" layoutY="211.0" prefHeight="30.0" prefWidth="197.0" />
+      <PasswordField fx:id="fxPwChk" layoutX="117.0" layoutY="233.0" prefHeight="30.0" prefWidth="197.0" />
       <Label layoutX="66.0" layoutY="306.0" prefHeight="29.0" prefWidth="50.0" text="이름">
          <font>
             <Font size="15.0" />
@@ -59,10 +59,6 @@
       </Label>
       <Button layoutX="91.0" layoutY="478.0" mnemonicParsing="false" onAction="#joinProc" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 25;" text="가입" />
       <Button layoutX="209.0" layoutY="478.0" mnemonicParsing="false" onAction="#cancelProc" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 25;" text="취소" />
-      <Button layoutX="237.0" layoutY="247.0" mnemonicParsing="false" onAction="#pwCheckProc" prefHeight="22.0" prefWidth="73.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 25;" text="중복확인">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets></Button>
       <ImageView fitHeight="54.0" fitWidth="150.0" layoutX="125.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/google.PNG" />
@@ -72,5 +68,13 @@
       <Line endX="245.0" layoutX="125.0" layoutY="543.0" opacity="0.4" startX="-110.0" />
       <Line endX="235.5" endY="-10.5" layoutX="135.0" layoutY="553.0" opacity="0.4" startX="235.5" startY="-537.5" />
       <Line endX="235.5" endY="-10.5" layoutX="-221.0" layoutY="552.0" opacity="0.4" startX="235.5" startY="-537.5" />
+      <Button layoutX="226.0" layoutY="158.0" mnemonicParsing="false" onAction="#idCheckProc" prefHeight="24.0" prefWidth="84.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 25;" text="중복확인">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

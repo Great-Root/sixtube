@@ -10,7 +10,7 @@ public interface MemberService {
 
 	public void setRoot(Parent root);
 	public void memberClose();
-	public void checkPw();
+	public void checkId();
 
 	
 

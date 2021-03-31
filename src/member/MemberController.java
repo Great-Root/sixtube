@@ -28,7 +28,8 @@ public class MemberController implements Initializable{
 	public void cancelProc() {
 		ms.memberClose();
 	}
-	public void pwCheckProc() {//패스워드 확인 버튼
-		ms.checkPw();
+	
+	public void idCheckProc() {
+		ms.checkId();
 	}
 }
