@@ -38,24 +38,19 @@
                <children>
                   <TableView fx:id="fxTable0" onMouseClicked="#click" prefHeight="263.0" prefWidth="89.0">
                     <columns>
-                      <TableColumn prefWidth="38.40002363920212" text="ID">
+                      <TableColumn prefWidth="75.0" text="ID">
                       	 <cellValueFactory>
                       		 <PropertyValueFactory property="userId" />
                       	 </cellValueFactory>
                       </TableColumn>
-                      <TableColumn prefWidth="73.60004043579102" text="Comments">
+                      <TableColumn prefWidth="219.0" text="Comments">
                       	<cellValueFactory>
                       		 <PropertyValueFactory property="content" />
                       	 </cellValueFactory>
                       </TableColumn>
-                        <TableColumn prefWidth="66.39996337890625" text="cnum">
+                        <TableColumn minWidth="0.0" prefWidth="0.0" text="cnum" visible="false">
                            <cellValueFactory>
                               <PropertyValueFactory property="cnum" />
-                           </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="114.4000274658203" text="vnum">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="vnum" />
                            </cellValueFactory>
                         </TableColumn>
                     </columns>
@@ -63,12 +58,12 @@
                   <TextField fx:id="fxComments0" onAction="#onEnter" prefHeight="33.0" prefWidth="200.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#reviseProc" text="수정">
+                        <Button fx:id="btnRev" mnemonicParsing="false" onAction="#reviseProc" text="수정">
                            <HBox.margin>
                               <Insets bottom="3.0" left="6.0" right="3.0" top="3.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#deleteProc" text="삭제">
+                        <Button fx:id="btnDel" mnemonicParsing="false" onAction="#deleteProc" text="삭제">
                            <HBox.margin>
                               <Insets left="180.0" top="3.0" />
                            </HBox.margin>
@@ -101,7 +96,7 @@
             </VBox>
             <VBox prefHeight="236.0" prefWidth="295.0">
                <children>
-                  <TableView fx:id="fxTable1" onMouseClicked="#click1" prefHeight="263.0" prefWidth="295.0">
+                  <TableView fx:id="fxTable1" onMouseClicked="#click" prefHeight="263.0" prefWidth="295.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="ID">
                            <cellValueFactory>
@@ -161,7 +156,7 @@
             </VBox>
             <VBox prefHeight="236.0" prefWidth="295.0">
                <children>
-                  <TableView fx:id="fxTable2" onMouseClicked="#click2" prefHeight="263.0" prefWidth="295.0">
+                  <TableView fx:id="fxTable2" onMouseClicked="#click" prefHeight="263.0" prefWidth="295.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="ID">
                            <cellValueFactory>

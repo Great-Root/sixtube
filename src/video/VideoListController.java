@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import database.member.MemberDAO;
 import database.member.MemberDAOImpl;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -13,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,55 +29,61 @@ import video.service.VideoService;
 import video.service.VideoServiceImpl;
 
 public class VideoListController implements Initializable {
-	Parent root;
+	
+	static Parent root, reviseRoot;
 	VideoStage vs;
 	VideoService service;
 	MemberServiceImpl ms;
+	TextField tf;
 	
-	@FXML TextField fxComments0;
-	@FXML TextField fxComments1;
-	@FXML TextField fxComments2;
-	
-	@FXML TableView<CommentDTO> fxTable0;
-	@FXML TableView<CommentDTO> fxTable1;
-	@FXML TableView<CommentDTO> fxTable2;
+	CommentDTO seletedDTO;
 	
 	public String inputValue;
 	
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
+	public void setReviseRoot(Parent reviseRoot) {
+		this.reviseRoot = reviseRoot;
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		vs = new VideoStage();
 		service = new VideoServiceImpl();
 		
+	}
+	
+	public void click(MouseEvent e) { //TableView내에 Data Mouse 클릭 액션으로 연결
 		
-		//for문 돌리고 싶은데 어떻게 해야할까?
-		fxComments0.setPromptText("Comments 입력하세요");
-		fxComments1.setPromptText("Comments 입력하세요");
-		fxComments2.setPromptText("Comments 입력하세요");
+		//TableView 에 클릭 액션이 된 줄의 source를 tw 변수에 저장.
+		TableView<CommentDTO> tw = (TableView<CommentDTO>) e.getSource();
 		
-//		tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//		    @Override
-//		    public void handle(MouseEvent event) {
-//		      if(event.getClickCount() > 1) {
-//		      }
-//		    }
-//		  });
+		System.out.println(tw.getSelectionModel().getSelectedItem().getCnum());
+		//CommentDTO 클래스에 TableView에서 선택한 것들 전부 seletedDTO란 변수에 저장
+		seletedDTO = tw.getSelectionModel().getSelectedItem();
+			
 		
+//		fxComments0.setText(tw.getSelectionModel().getSelectedItem().getContent());
+//		fxComments1.setText(tw.getSelectionModel().getSelectedItem().getContent());
+//		fxComments2.setText(tw.getSelectionModel().getSelectedItem().getContent());
 	}
-	public int click(MouseEvent e) {
-		return fxTable0.getSelectionModel().getSelectedItem().getCnum();
-	}
-	public int click0() {
-		return fxTable0.getSelectionModel().getSelectedItem().getCnum();
-	}
-	public int click1() {
-		return fxTable1.getSelectionModel().getSelectedItem().getCnum();
-	}
-	public int click2() {
-		return fxTable2.getSelectionModel().getSelectedItem().getCnum();
+	
+	public void CompleteProc () {
+		System.out.println("수정 완료 버튼");
+		System.out.println("선택한 번호에요 : "+ seletedDTO.getCnum());
+//		Parent root = ((Button) e.getSource()).getParent();
+//		System.out.println(root);
+		if(Controller.lu.getId().equals(seletedDTO.getUserId())) {
+			seletedDTO.setContent(new SimpleStringProperty(tf.getText()));
+			if(service.commentsRevise(seletedDTO)) {
+				Controller.cs.exit(reviseRoot);
+				setListView();
+			}else {
+				Controller.cs.alert("수정에 실패했습니다.");
+			}
+		}else {
+			Controller.cs.alert("작성자만 수정이 가능합니다.");
+		}
 	}
 	
 	public void setImg() {
@@ -134,7 +142,7 @@ public class VideoListController implements Initializable {
 		
 		for(int i = 0 ; i <3;i++) {
 		TableView<CommentDTO> fxTable = (TableView<CommentDTO>)root.lookup("#fxTable"+i);
-		
+		((TextField)root.lookup("#fxComments"+i)).setPromptText("Comments 입력하세요");
 		ObservableList<CommentDTO> list = fxTable.getItems();
 		list.clear();
 		ArrayList<CommentDTO> arr = service.getCommentList(i);
@@ -150,17 +158,48 @@ public class VideoListController implements Initializable {
 		
 		
 	}
-	public void reviseProc() {
-		System.out.println("수정버튼 클릭");
-	}
 	
-	public void deleteProc() {
-//		tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-		//클릭한 시퀀스 넘버 가져오는 메서드 작성
+	public void changeCont(CommentDTO seleteddto) {
 		
-//		service.commentsDelete(click());
-		setListView();
-		System.out.println("삭제버튼 클릭");
+		//CommentDTO seletedDTO 변수에 인자 값인 seleteddto와 동일하게 맞춰준다.
+		this.seletedDTO = seleteddto;
+		
+		//revisecontent.fxml에서의 textField의  값을
+		tf = (TextField) reviseRoot.lookup("#changeCont");
+		//videolist.fxml 에 있는 tableview에 content 값을 setTest로 받아서 tf에 저장.
+		tf.setText(seleteddto.getContent());
+		
+		
+		
 	}
 	
-}
+	public void reviseProc() {
+		System.out.println("수정버튼");
+		if(Controller.lu.getId().equals(seletedDTO.getUserId())) {
+			vs.showContentView(seletedDTO);
+			System.out.println("수정 버튼 클릭");
+		}else {
+			Controller.cs.alert("작성자만 수정이 가능합니다.");
+		}
+		
+	}
+	
+	public void deleteProc() { //삭제 버튼 클릭
+		 
+		//로그인 당시의 userId와 현재 TableView Column의 Id값을 비교
+		if(Controller.lu.getId().equals(seletedDTO.getUserId())) {
+			//true면 service class의 commentsDelete();메서드로 click();메서드에서 저장되었던 selectedNum(cnum)값을 넣어서 넘겨준다.
+			service.commentsDelete(seletedDTO.getCnum());
+			
+			setListView();
+			System.out.println("삭제버튼 클릭");
+		}else {
+			Controller.cs.alert("작성자만 삭제가 가능합니다.");
+		}
+	}
+	
+		
+		
+		
+	}
+

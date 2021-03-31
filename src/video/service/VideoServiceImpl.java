@@ -14,6 +14,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
+import member.Controller;
 import javafx.scene.image.ImageView;
 import model.VideoDTO;
 import video.VideoStage;
@@ -61,9 +62,8 @@ public class VideoServiceImpl implements VideoService {
 	}
 
 	@Override
-	public void commentsRevise(int cnum) {
-		// TODO Auto-generated method stub
-
+	public boolean commentsRevise(CommentDTO dto) {
+		return dao.commentsRevise(dto);
 	}
 
 	@Override

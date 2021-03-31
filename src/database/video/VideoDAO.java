@@ -29,5 +29,7 @@ public interface VideoDAO {
 	public ArrayList<CommentDTO> getCommentList(int vnum);
 
 	public void commentsDelete(int cnum);
+
+	public boolean commentsRevise(CommentDTO dto);
 	
 }
