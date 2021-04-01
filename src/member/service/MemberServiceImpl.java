@@ -1,6 +1,9 @@
 package member.service;
 
 
+import java.util.ArrayList;
+
+import common.LoginUser;
 import database.member.MemberDAO;
 import database.member.MemberDAOImpl;
 import javafx.fxml.FXML;
@@ -18,8 +21,6 @@ import video.VideoStage;
 public class MemberServiceImpl implements MemberService{
 	Parent root;
 
-	//chb에 트루면 아이디 유지 비번 지우고 비번쪽에 포커스
-	//chb에 펄스면 둘다 클리어 아이디에 포커스
 
 	@Override
 	public boolean login(Parent root) {
@@ -30,46 +31,44 @@ public class MemberServiceImpl implements MemberService{
 		CheckBox chb=(CheckBox)root.lookup("#fxCheck");
 		if(id.getText().isEmpty()) {
 			Controller.cs.alert("아이디를 입력하세요.");
-		}
-
-		System.out.println("로그인 체크합니다.");
-		System.out.println("id : "+id.getText());
-		String userId=id.getText();
-		System.out.println("pwd : "+pwd.getText());
-
-		MemberDAO ds=new MemberDAOImpl();
-		String dbPwd=ds.loginCheck(id.getText());
-
-		//		boolean chb=fxCheck.isSelected(); 
-
-		if(dbPwd==null) {
-			Controller.cs.alert("존재하지 않는 아이디입니다.");
-			id.clear();
-			pwd.clear();
 		}else {
-			if(dbPwd.equals(pwd.getText())) {
-
-				Controller.cs.exit(root);
-				result = true;
+			System.out.println("로그인 체크합니다.");
+			System.out.println("id : "+id.getText());
+			String userId=id.getText();
+			System.out.println("pwd : "+pwd.getText());
+	
+			MemberDAO ds=new MemberDAOImpl();
+			String dbPwd=ds.loginCheck(id.getText());
+	
+	
+			if(dbPwd==null) {
+				Controller.cs.alert("존재하지 않는 아이디입니다.");
+				id.clear();
+				pwd.clear();
 			}else {
-				Controller.cs.alert("비밀번호가 틀렸습니다.");
-				if(chb.isSelected()==false) {
-					id.clear();
-					pwd.clear();
-					id.requestFocus();					
+				if(dbPwd.equals(pwd.getText())) {
+					Controller.lu.setUserId(userId);
+					System.out.println(Controller.lu.getUserId()+"님께서 로그인 되었습니다.");
+					Controller.cs.exit(root);
+					result = true;
 				}else {
-					pwd.clear();
-					pwd.requestFocus();
+					Controller.cs.alert("비밀번호가 틀렸습니다.");
+					if(chb.isSelected()==false) {
+						id.clear();
+						pwd.clear();
+						id.requestFocus();					
+					}else {
+						pwd.clear();
+						pwd.requestFocus();
+					}
 				}
 			}
 		}
-
 		return result;
 	}
 
 	@Override
-	public void join() {
-		//회원가입->가입 버튼눌렀을때
+	public void join(){
 
 		boolean gender=getGender();
 		System.out.println("성별(true=여, false=남) : "+gender);
@@ -91,7 +90,6 @@ public class MemberServiceImpl implements MemberService{
 		dto.setPw(pw.getText());
 		dto.setName(name.getText());
 		dto.setAge(age);
-
 
 		if(gender) {
 			dto.setGender(0);//여
@@ -124,7 +122,6 @@ public class MemberServiceImpl implements MemberService{
 				Controller.cs.alert("비밀번호가 일치하지 않습니다.");
 			}
 		}
-
 	} 
 
 
@@ -139,24 +136,26 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void memberClose() {
 		Controller.cs.exit(root);
-
 	}
 
 
 
 	@Override
-	public void checkId() {
+	public boolean checkId() {
 		System.out.println("ID 중복 검사");
 		TextField id=(TextField)root.lookup("#fxId");
 
 		if(id.getText().isEmpty()) {
 			Controller.cs.alert("아이디를 입력해주세요");
+		}else {
+			MemberDAO ds=new MemberDAOImpl();
+			if(ds.checkMemberID(id.getText())) {
+				Controller.cs.alert("중복된 아이디입니다.");
+			}else {
+				Controller.cs.alert("사용가능한 아이디입니다.");
+			}
 		}
-
-		String idStr=id.getText();
-
-		//입력받은 아이디가 DB에 존재하는 지 검사
-
+		return true;
 	}
 
 
@@ -184,6 +183,6 @@ public class MemberServiceImpl implements MemberService{
 		return age;
 	}
 
-	
+
 
 }

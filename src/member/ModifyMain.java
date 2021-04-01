@@ -10,26 +10,6 @@ import javafx.stage.Stage;
 
 public class ModifyMain{
 
-	//	public void modifyMember() {
-	//		Stage stage=new Stage();
-	//		
-	//		FXMLLoader loader=new FXMLLoader(getClass().getResource("modify.fxml"));
-	//		Parent root=null;
-	//		try {
-	//			root=loader.load();
-	//		}catch(IOException e) {
-	//			e.printStackTrace();
-	//		}
-	//		Scene scene=new Scene(root);
-	//		
-	//		MemberController controller=loader.getController();
-	//		controller.setRoot(root);
-	//		
-	//		stage.setScene(scene);
-	//		stage.show();
-	//	
-	//	}
-
 	public void deleteMember(){
 		Stage stage=new Stage();
 

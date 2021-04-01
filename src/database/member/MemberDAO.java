@@ -8,5 +8,7 @@ public interface MemberDAO {
 	String loginCheck(String userId);
 	int modifyMember(MemberDTO dto);
 	int deleteMember(MemberDTO dto);
+	boolean checkMemberID(String userId);
+
 	
 }

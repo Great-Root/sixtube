@@ -23,8 +23,8 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="fxId" layoutX="142.0" layoutY="184.0" prefHeight="30.0" prefWidth="191.0" />
-      <PasswordField fx:id="fxPw" layoutX="142.0" layoutY="236.0" prefHeight="30.0" prefWidth="191.0" />
+      <TextField fx:id="fxId" layoutX="142.0" layoutY="184.0" onAction="#onEnter" prefHeight="30.0" prefWidth="191.0" />
+      <PasswordField fx:id="fxPw" layoutX="142.0" layoutY="236.0" onAction="#onEnter" prefHeight="30.0" prefWidth="191.0" />
       <Button layoutX="271.0" layoutY="317.0" mnemonicParsing="false" onAction="#registerProc" prefHeight="30.0" prefWidth="69.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 25;" text="회원가입" />
       <Button layoutX="82.0" layoutY="317.0" mnemonicParsing="false" onAction="#loginProc" prefHeight="30.0" prefWidth="69.0" style="-fx-background-color: white; -fx-border-radius: 25; -fx-border-color: grey;" text="로그인" />
       <Button layoutX="173.0" layoutY="317.0" mnemonicParsing="false" onAction="#cancelProc" prefHeight="30.0" prefWidth="69.0" style="-fx-background-color: white; -fx-border-radius: 25; -fx-border-color: grey;" text="취소" />
