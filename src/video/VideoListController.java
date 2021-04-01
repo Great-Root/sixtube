@@ -36,6 +36,7 @@ public class VideoListController implements Initializable {
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		vs = new VideoStage();
@@ -58,13 +59,11 @@ public class VideoListController implements Initializable {
 			title.setText(video.getTitle());
 			iv.setImage(new Image(video.getThpath()));
 			iv.setId(video.getVpath());
-			System.out.println(video.toString());
 		}
 	}
 	public void imgClickProc(MouseEvent e) {
 		if(e.getClickCount()>1) {
 			service.getVideo(((ImageView)e.getSource()).getId());
-			System.out.println(((ImageView)e.getSource()).getId());
 		}
 	}
 	

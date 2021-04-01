@@ -32,4 +32,12 @@ public interface VideoService {
 	void commentsRevise(int num);
 	//delete
 	void commentsDelete(int cnum);
+
+	public void setVideoWidth(double width);
+	
+	public double getHeight(double width);
+
+	public void iconVisible();
+
+	public void iconDisVisible();
 }

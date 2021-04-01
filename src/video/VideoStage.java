@@ -2,10 +2,16 @@ package video;
 
 import java.io.IOException;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import member.Controller;
 
 public class VideoStage {
 	public void showVideoList() {
@@ -40,10 +46,28 @@ public class VideoStage {
 		
 		VideoController controller = loader.getController();
 		controller.setRoot(root);
-		System.out.println(videoId);
-		controller.setVideo(root, videoId);
+		controller.setVideo(videoId);
 		
+		
+		//비디오 뷰에서 X버튼 눌렀을 경우 비디오 정지 시키는 코드
+		stage.setOnCloseRequest(event->{
+			controller.service.stopProc();
+		});
+		
+		stage.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number width) {
+            	controller.service.setVideoWidth((double) number);
+            	double height = controller.service.getHeight((double)number);
+            	stage.setHeight(height);
+//            	stage.setMinHeight(height-0.3);
+//            	stage.setMaxHeight(height+3);
+            }
+        });
+		
+
 		stage.setScene(scene);
 		stage.show();
 	}
+
 }

@@ -39,6 +39,7 @@ public class Controller implements Initializable {
 		
 		if(ms.login(root)) {
 			s.showVideoList();
+			
 		}
 		
 	}
