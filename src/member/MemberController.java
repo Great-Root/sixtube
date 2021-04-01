@@ -3,7 +3,8 @@ package member;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+import common.CommonClass;
+import common.CommonService;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import member.service.MemberService;
@@ -12,6 +13,12 @@ import member.service.MemberServiceImpl;
 public class MemberController implements Initializable{
 	Parent root;
 	MemberService ms;
+	
+	public static CommonService cs;//
+	static {
+		cs = new CommonClass();
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ms=new MemberServiceImpl();
@@ -22,13 +29,17 @@ public class MemberController implements Initializable{
 		ms.setRoot(root);
 	}
 	
-	public void joinProc() { //회원가입 버튼
+	public void joinProc() {
 		ms.join();
 	}
 	public void cancelProc() {
 		ms.memberClose();
 	}
-	public void pwCheckProc() {//패스워드 확인 버튼
-		ms.checkPw();
+	
+	public void idCheckProc() {
+		ms.checkId();
+	}
+	public void onEnter() {
+		joinProc();
 	}
 }

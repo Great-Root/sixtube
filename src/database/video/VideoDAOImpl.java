@@ -102,9 +102,8 @@ public class VideoDAOImpl implements VideoDAO {
 				
 				list.add(dto);
 			}
-
 			
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -113,6 +112,38 @@ public class VideoDAOImpl implements VideoDAO {
 		return list;
 		
 		
+	}
+
+	
+	@Override
+	public void commentsDelete(int cnum) {
+		
+		String sql = "delete from comments where cnum = " + cnum ;
+		
+		try {
+			Connection con = DriverManager.getConnection(url, id, pw);
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	@Override
+	public boolean commentsRevise(CommentDTO dto) {
+		String sql = "update comments set comt = '" +dto.getContent() + "' where cnum = " + dto.getCnum() ;
+		boolean result = false;
+		try {
+			Connection con = DriverManager.getConnection(url, id, pw);
+			PreparedStatement ps = con.prepareStatement(sql);
+			result = ps.executeUpdate() == 1 ? true: false;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
