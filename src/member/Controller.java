@@ -21,6 +21,7 @@ public class Controller implements Initializable {
 	MemberMain mm;
 	VideoStage s = new VideoStage();
 	
+	//userId가져오기 위해서 static 이용
 	public static LoginUser lu;
 	static {
 		lu = new LoginUser(); 

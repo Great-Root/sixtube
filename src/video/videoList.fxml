@@ -58,12 +58,12 @@
                   <TextField fx:id="fxComments0" onAction="#onEnter" prefHeight="33.0" prefWidth="200.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnRev" mnemonicParsing="false" onAction="#reviseProc" text="수정">
+                        <Button fx:id="btnRev0" mnemonicParsing="false" onAction="#reviseProc" text="수정">
                            <HBox.margin>
                               <Insets bottom="3.0" left="6.0" right="3.0" top="3.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="btnDel" mnemonicParsing="false" onAction="#deleteProc" text="삭제">
+                        <Button fx:id="btnDel0" mnemonicParsing="false" onAction="#deleteProc" text="삭제">
                            <HBox.margin>
                               <Insets left="180.0" top="3.0" />
                            </HBox.margin>
@@ -118,12 +118,12 @@
                   <TextField fx:id="fxComments1" onAction="#onEnter" prefHeight="33.0" prefWidth="200.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#reviseProc" text="수정">
+                        <Button fx:id="btnRev1" mnemonicParsing="false" onAction="#reviseProc" text="수정">
                            <HBox.margin>
                               <Insets bottom="3.0" left="6.0" right="3.0" top="3.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#deleteProc" text="삭제">
+                        <Button fx:id="btnDel1" mnemonicParsing="false" onAction="#deleteProc" text="삭제">
                            <HBox.margin>
                               <Insets left="180.0" top="3.0" />
                            </HBox.margin>
@@ -178,12 +178,12 @@
                   <TextField fx:id="fxComments2" onAction="#onEnter" prefHeight="33.0" prefWidth="200.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#reviseProc" text="수정">
+                        <Button fx:id="btnRev2" mnemonicParsing="false" onAction="#reviseProc" text="수정">
                            <HBox.margin>
                               <Insets bottom="3.0" left="6.0" right="3.0" top="3.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#deleteProc" text="삭제">
+                        <Button fx:id="btnDel2" mnemonicParsing="false" onAction="#deleteProc" text="삭제">
                            <HBox.margin>
                               <Insets left="180.0" top="3.0" />
                            </HBox.margin>

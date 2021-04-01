@@ -43,6 +43,8 @@ public class VideoListController implements Initializable {
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
+	
+	
 	public void setReviseRoot(Parent reviseRoot) {
 		this.reviseRoot = reviseRoot;
 	}
@@ -53,37 +55,55 @@ public class VideoListController implements Initializable {
 		
 	}
 	
-	public void click(MouseEvent e) { //TableView내에 Data Mouse 클릭 액션으로 연결
+	//TableView내에 Data Mouse 클릭 액션으로 연결
+	public void click(MouseEvent e) {
 		
 		//TableView 에 클릭 액션이 된 줄의 source를 tw 변수에 저장.
 		TableView<CommentDTO> tw = (TableView<CommentDTO>) e.getSource();
 		
-		System.out.println(tw.getSelectionModel().getSelectedItem().getCnum());
-		//CommentDTO 클래스에 TableView에서 선택한 것들 전부 seletedDTO란 변수에 저장
-		seletedDTO = tw.getSelectionModel().getSelectedItem();
-			
+//		System.out.println(tw.getSelectionModel().getSelectedItem().getCnum());
 		
-//		fxComments0.setText(tw.getSelectionModel().getSelectedItem().getContent());
-//		fxComments1.setText(tw.getSelectionModel().getSelectedItem().getContent());
-//		fxComments2.setText(tw.getSelectionModel().getSelectedItem().getContent());
+		//선택한 tableview의 정보를 전부 selectedDTO에 저장.
+		seletedDTO = tw.getSelectionModel().getSelectedItem();
+		btnRevDisable();
+		btnDelDisable();
+		//클릭 된 tableview에 수정버튼 활성화
+		((Button)root.lookup("#btnRev"+seletedDTO.getVnum())).setDisable(false);
+		
+		//클릭 된 tableview에 삭제버튼 활성화
+		((Button)root.lookup("#btnDel"+seletedDTO.getVnum())).setDisable(false);
 	}
 	
+	public void btnRevDisable() {
+		//수정 button 전부 비활성화
+		for(int i = 0; i < 3; i++) {
+			((Button)root.lookup("#btnRev"+i)).setDisable(true);
+		}
+	}
+	
+	public void btnDelDisable() {
+		//삭제 button 전부 비활성화
+				for(int i = 0; i < 3; i++) {
+					((Button)root.lookup("#btnDel"+i)).setDisable(true);
+				}
+	}
+	
+	//revisecontent.fxml에서의 수정완료 버튼.
 	public void CompleteProc () {
-		System.out.println("수정 완료 버튼");
-		System.out.println("선택한 번호에요 : "+ seletedDTO.getCnum());
-//		Parent root = ((Button) e.getSource()).getParent();
-//		System.out.println(root);
-		if(Controller.lu.getId().equals(seletedDTO.getUserId())) {
+		
+//		if(Controller.lu.getId().equals(seletedDTO.getUserId())) {
 			seletedDTO.setContent(new SimpleStringProperty(tf.getText()));
-			if(service.commentsRevise(seletedDTO)) {
+			
+//			if(service.commentsRevise(seletedDTO)) {
+				service.commentsRevise(seletedDTO);
 				Controller.cs.exit(reviseRoot);
 				setListView();
-			}else {
-				Controller.cs.alert("수정에 실패했습니다.");
-			}
-		}else {
-			Controller.cs.alert("작성자만 수정이 가능합니다.");
-		}
+//			}else {
+//				Controller.cs.alert("수정에 실패했습니다.");
+//			}
+//		}else {
+//			Controller.cs.alert("작성자만 수정이 가능합니다.");
+//		}
 	}
 	
 	public void setImg() {
@@ -109,27 +129,23 @@ public class VideoListController implements Initializable {
 	public void onEnter(ActionEvent e) {   
 		//e.getSource(); 메서드를 통해서 textField내의 특정 컨테이너의 속성을 가져온다. 
 		TextField tf = (TextField)e.getSource();
-		System.out.println("tf : "+tf);
 		
 		//textField에 삽입한 값을 String 형태로 저장.
 		inputValue = tf.getText(); 
-		System.out.println("inputValue : "+inputValue);
 		
 		//입력 값 삭제
-		
-	
 		tf.clear();
+		
 		//TextField내의 id값을 String id 변수에 저장.
 		String id =((TextField)e.getSource()).getId();
-		System.out.println("id : " +id);
 		
 		//String id의 마지막 값을 char ch변수에 저장
 		char ch = id.charAt(id.length()-1);
-//		Character.getNumericValue(); 메서드를 통해서 char형을 int형(vnum변수)으로 변환.
+		
+		//Character.getNumericValue(); 메서드를 통해서 char형을 int형(vnum변수)으로 변환.
 		int vnum = Character.getNumericValue(ch);
 		
-		
-		//dto (cnum,usrId,content,vnum)
+		//dto (cnum,usrId,content,vnum) , 만든 정보를 dto 변수에 저장.
 		CommentDTO dto = new CommentDTO(0, Controller.lu.getId(),inputValue,vnum);
 		
 		service.sendComments(dto);
@@ -141,10 +157,15 @@ public class VideoListController implements Initializable {
 	public void setListView() {
 		
 		for(int i = 0 ; i <3;i++) {
+			
 		TableView<CommentDTO> fxTable = (TableView<CommentDTO>)root.lookup("#fxTable"+i);
+		//setPromptText() 메소드를 각 테이블의 textField에 넣어주는 코드
 		((TextField)root.lookup("#fxComments"+i)).setPromptText("Comments 입력하세요");
+		//tableview의 정보를 가져와서 list 변수에 저장.
 		ObservableList<CommentDTO> list = fxTable.getItems();
+		//넣고 난 후 clear()
 		list.clear();
+		//arrayList에 tableview의 번호를 저장.(vnum)
 		ArrayList<CommentDTO> arr = service.getCommentList(i);
 		
 		
@@ -156,7 +177,8 @@ public class VideoListController implements Initializable {
 		
 		}
 		
-		
+		btnRevDisable();
+		btnDelDisable();
 	}
 	
 	public void changeCont(CommentDTO seleteddto) {
@@ -173,18 +195,25 @@ public class VideoListController implements Initializable {
 		
 	}
 	
+	
+	//수정 버튼 클릭
 	public void reviseProc() {
-		System.out.println("수정버튼");
+		
+		
+		
+		//로그인 한 id와 현재 tableview에 있는 id와 비교
 		if(Controller.lu.getId().equals(seletedDTO.getUserId())) {
+			
+			//true면 videoStage에 정보를 가지고 넘겨준다.
 			vs.showContentView(seletedDTO);
-			System.out.println("수정 버튼 클릭");
 		}else {
 			Controller.cs.alert("작성자만 수정이 가능합니다.");
 		}
 		
 	}
 	
-	public void deleteProc() { //삭제 버튼 클릭
+	//삭제 버튼 클릭
+	public void deleteProc() { 
 		 
 		//로그인 당시의 userId와 현재 TableView Column의 Id값을 비교
 		if(Controller.lu.getId().equals(seletedDTO.getUserId())) {

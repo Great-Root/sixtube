@@ -134,7 +134,6 @@ public class VideoDAOImpl implements VideoDAO {
 	@Override
 	public boolean commentsRevise(CommentDTO dto) {
 		String sql = "update comments set comt = '" +dto.getContent() + "' where cnum = " + dto.getCnum() ;
-		System.out.println(sql);
 		boolean result = false;
 		try {
 			Connection con = DriverManager.getConnection(url, id, pw);
