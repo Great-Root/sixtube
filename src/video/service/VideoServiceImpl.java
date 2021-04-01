@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import database.video.VideoDAO;
 import database.video.VideoDAOImpl;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,15 +28,14 @@ public class VideoServiceImpl implements VideoService {
 	VideoDAO dao = new VideoDAOImpl();
 	Parent root;
 	MediaPlayer videoPlayer;
-	
-	Button btnPlay,btnPause,btnStop,btnPlus,btnMinus;
+	MediaView videoView;
+	Button btnPlay,btnPause,btnStop,btnPlus,btnMinus,btnSlow,btnFast;
 	Label labelTime;
-	ProgressBar progressBar;
 	ProgressIndicator progressIndicator;
-	Slider slider;
+	Slider slider, slider1;
 	
 	VideoStage vs = new VideoStage();
-
+	
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
@@ -41,44 +44,34 @@ public class VideoServiceImpl implements VideoService {
 	public void getVideo(String vpath) {
 		vs.showVideoView(vpath);
 	}
-
 	@Override
 	public ArrayList<VideoDTO> getVideoList() {
 		return dao.getVideoList();
 	}
-
 	@Override
 	public void sendComments(CommentDTO dto) {
-
 		dao.contentUpload(dto);
-
 	}
-
 	@Override
 	public ArrayList<CommentDTO> getCommentList(int vnum) {
-
 		return dao.getCommentList(vnum);
 	}
-
 	@Override
 	public void commentsRevise(int cnum) {
 		// TODO Auto-generated method stub
-
 	}
-
 	@Override
 	public void commentsDelete(int cnum) {
 		// TODO Auto-generated method stub
-
 	}
-
-	
 	@Override 
 	public void playProc() {
-		//플레이
+		//플레이,볼륨
 		videoPlayer.setVolume(0.1);
 		slider.setValue(10.0);
-			
+		
+		//재생을 누르면 0.5,2배속이 다시 1배속으로 돌아온다.
+		videoPlayer.setRate(1);	
 		videoPlayer.play();
 	}
 	@Override
@@ -90,8 +83,20 @@ public class VideoServiceImpl implements VideoService {
 		videoPlayer.stop();
 	}
 	@Override
-	public void volumnProc() {
+	public void volumnDragProc() {
 		videoPlayer.setVolume(slider.getValue()/100.0);
+	}
+	@Override
+	public void volumnClickProc() {
+		videoPlayer.setVolume(slider.getValue()/100.0);
+	}
+	@Override
+	public void timeDragProc() {
+		videoPlayer.seek(Duration.seconds(slider1.getValue()*videoPlayer.getTotalDuration().toSeconds()/100));
+	}
+	@Override
+	public void timeClickProc() {
+		videoPlayer.seek(Duration.seconds(slider1.getValue()*videoPlayer.getTotalDuration().toSeconds()/100));
 	}
 	@Override
 	public void plusProc() {
@@ -102,6 +107,14 @@ public class VideoServiceImpl implements VideoService {
 		videoPlayer.seek(videoPlayer.getCurrentTime().add(Duration.seconds(-10)));
 	}
 	@Override
+	public void slowProc() {
+		videoPlayer.setRate(0.5);
+	}
+	@Override 
+	public void fastProc() {
+		videoPlayer.setRate(2);
+	}
+	@Override
 	public void setVideo(String mediaName) {
 		MediaView videoView = (MediaView)root.lookup("#fxMediaView");
 		btnPlay = (Button)root.lookup("#btnPlay");
@@ -109,12 +122,14 @@ public class VideoServiceImpl implements VideoService {
 		btnStop = (Button)root.lookup("#btnStop");
 		btnPlus = (Button)root.lookup("#btnPlus");
 		btnMinus = (Button)root.lookup("#btnMinus");
-		
+		btnSlow = (Button)root.lookup("#btnSlow");
+		btnFast = (Button)root.lookup("#btnFast");
 		
 		//labelTime =(Label)root.lookup("#labelTime");
-		progressBar =(ProgressBar)root.lookup("#progressBar");
+		//progressBar =(ProgressBar)root.lookup("#progressBar");
 		progressIndicator =(ProgressIndicator)root.lookup("#progressIndicator");
 		slider = (Slider)root.lookup("#slider");
+		slider1 =(Slider)root.lookup("#slider1");
 		System.out.println(getClass().getResource(mediaName));
 		System.out.println(mediaName);
 		Media media = new Media(getClass().getResource("../"+mediaName).toString());
@@ -123,28 +138,33 @@ public class VideoServiceImpl implements VideoService {
 			
 		videoPlayer.setOnReady(()->{
 		//버튼 비활성화 여부
-			
 		btnPlay.setDisable(false);
 		btnPause.setDisable(true);
 		btnStop.setDisable(true);
 		btnPlus.setDisable(true);
 		btnMinus.setDisable(true);
+		btnSlow.setDisable(true);
+		btnFast.setDisable(true);
 		
 		videoPlayer.currentTimeProperty().addListener((obj,oldValue,newValue)->{
 			double progress = 
 			videoPlayer.getCurrentTime().toSeconds() / videoPlayer.getTotalDuration().toSeconds();
-			progressBar.setProgress(progress);
+			//progressBar.setProgress(progress);
 			progressIndicator.setProgress(progress);
 			//labelTime.setText( (int)videoPlayer.getCurrentTime().toSeconds()+" / "+
 					//(int)videoPlayer.getTotalDuration().toSeconds()+" sec");
+			slider1.setValue(newValue.toSeconds()*100/ videoPlayer.getTotalDuration().toSeconds());
 			});
 		});
+		
 		videoPlayer.setOnPlaying(()->{
 			btnPlay.setDisable(true);
 			btnPause.setDisable(false);
 			btnStop.setDisable(false);
 			btnPlus.setDisable(false);
 			btnMinus.setDisable(false);
+			btnSlow.setDisable(false);
+			btnFast.setDisable(false);
 		});
 		videoPlayer.setOnPaused(()->{
 			btnPlay.setDisable(false);
@@ -152,6 +172,8 @@ public class VideoServiceImpl implements VideoService {
 			btnStop.setDisable(false);
 			btnPlus.setDisable(false);
 			btnMinus.setDisable(false);
+			btnSlow.setDisable(false);
+			btnFast.setDisable(false);
 		});
 		videoPlayer.setOnEndOfMedia(()->{
 			btnPlay.setDisable(false);
@@ -159,6 +181,8 @@ public class VideoServiceImpl implements VideoService {
 			btnStop.setDisable(true);
 			btnPlus.setDisable(true);
 			btnMinus.setDisable(true);
+			btnSlow.setDisable(true);
+			btnFast.setDisable(true);
 				
 			videoPlayer.stop();
 			videoPlayer.seek(videoPlayer.getStartTime());
@@ -169,6 +193,8 @@ public class VideoServiceImpl implements VideoService {
 			btnStop.setDisable(true);
 			btnPlus.setDisable(true);
 			btnMinus.setDisable(true);
+			btnSlow.setDisable(true);
+			btnFast.setDisable(true);
 		});
 			
 	}
