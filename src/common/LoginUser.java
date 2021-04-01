@@ -8,6 +8,7 @@ public class LoginUser {
 	}
 	public void setUserId(String userId) {
 		this.userId=userId;
+
 	}
 	
 }

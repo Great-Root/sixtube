@@ -29,7 +29,8 @@ public interface VideoService {
 	ArrayList<CommentDTO> getCommentList(int vnum);
 	
 	//revise
-	void commentsRevise(int num);
+	boolean commentsRevise(CommentDTO dto);
+	
 	//delete
 	void commentsDelete(int cnum);
 

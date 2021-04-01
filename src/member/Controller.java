@@ -6,11 +6,8 @@ import java.util.ResourceBundle;
 import common.CommonClass;
 import common.CommonService;
 import common.LoginUser;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
 import member.service.MemberService;
 import member.service.MemberServiceImpl;
 import video.VideoStage;
@@ -19,13 +16,15 @@ public class Controller implements Initializable {
 	Parent root;
 	MemberService ms;
 	MemberMain mm;
-	
 	VideoStage s = new VideoStage();
+	
+	//userId가져오기 위해서 static 이용
 	public static LoginUser lu;
 	static {
 		lu = new LoginUser(); 
 	}
 	public static CommonService cs;
+	
 	static {
 		cs = new CommonClass();
 	}
@@ -39,15 +38,11 @@ public class Controller implements Initializable {
 		mm=new MemberMain();
 	}
 	public void loginProc() {
-		System.out.println("로그인");
-		
 		if(ms.login(root)) {
 			s.showVideoList();
-			
 		}
 	}
 	public void registerProc() {
-		System.out.println("가입화면전환");
 		mm.setMemberStage();
 	}
 	public void cancelProc() {

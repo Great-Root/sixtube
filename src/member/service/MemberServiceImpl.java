@@ -26,64 +26,61 @@ public class MemberServiceImpl implements MemberService{
 	public boolean login(Parent root) {
 
 		boolean result = false;
-		TextField id=(TextField)root.lookup("#fxId");
-		PasswordField pwd=(PasswordField)root.lookup("#fxPw");
-		CheckBox chb=(CheckBox)root.lookup("#fxCheck");
-		if(id.getText().isEmpty()) {
+		TextField id = (TextField) root.lookup("#fxId");
+		PasswordField pwd = (PasswordField) root.lookup("#fxPw");
+		CheckBox chb = (CheckBox) root.lookup("#fxCheck");
+		if (id.getText().isEmpty()) {
 			Controller.cs.alert("아이디를 입력하세요.");
-		}else {
-			System.out.println("로그인 체크합니다.");
-			System.out.println("id : "+id.getText());
-			String userId=id.getText();
-			System.out.println("pwd : "+pwd.getText());
-	
-			MemberDAO ds=new MemberDAOImpl();
-			String dbPwd=ds.loginCheck(id.getText());
-	
-	
-			if(dbPwd==null) {
+		} else {
+			String userId = id.getText();
+
+			MemberDAO ds = new MemberDAOImpl();
+			String dbPwd = ds.loginCheck(id.getText());
+
+			if (dbPwd == null) {
 				Controller.cs.alert("존재하지 않는 아이디입니다.");
 				id.clear();
 				pwd.clear();
-			}else {
-				if(dbPwd.equals(pwd.getText())) {
-					Controller.lu.setUserId(userId);
-					System.out.println(Controller.lu.getUserId()+"님께서 로그인 되었습니다.");
+			} else {
+				if (dbPwd.equals(pwd.getText())) {
+
 					Controller.cs.exit(root);
+					// choi추가 id가져오기
+					Controller.lu.setUserId(id.getText());
 					result = true;
-				}else {
-					Controller.cs.alert("비밀번호가 틀렸습니다.");
-					if(chb.isSelected()==false) {
-						id.clear();
-						pwd.clear();
-						id.requestFocus();					
-					}else {
-						pwd.clear();
-						pwd.requestFocus();
+				} else {
+					if (dbPwd.equals(pwd.getText())) {
+						Controller.lu.setUserId(userId);
+						Controller.cs.exit(root);
+						result = true;
+					} else {
+						Controller.cs.alert("비밀번호가 틀렸습니다.");
+						if (chb.isSelected() == false) {
+							id.clear();
+							pwd.clear();
+							id.requestFocus();
+						} else {
+							pwd.clear();
+							pwd.requestFocus();
+						}
 					}
 				}
 			}
 		}
 		return result;
-	}
+	}		
 
 	@Override
 	public void join(){
 
 		boolean gender=getGender();
-		System.out.println("성별(true=여, false=남) : "+gender);
 
 		int age=getComboBox();
-		System.out.println("나이 : "+age);
 
 		TextField id=(TextField)root.lookup("#fxId");
 		PasswordField pw=(PasswordField)root.lookup("#fxPw");
 		PasswordField pw2=(PasswordField)root.lookup("#fxPwChk");
 		TextField name=(TextField)root.lookup("#fxName");
-		System.out.println("아이디 : "+id.getText());
-		System.out.println("비밀번호 : "+pw.getText());
-		System.out.println("비밀번호 확인 : "+pw2.getText());
-		System.out.println("이름 : "+name.getText());
 
 		MemberDTO dto=new MemberDTO();
 		dto.setId(id.getText());
@@ -142,7 +139,6 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public boolean checkId() {
-		System.out.println("ID 중복 검사");
 		TextField id=(TextField)root.lookup("#fxId");
 
 		if(id.getText().isEmpty()) {
