@@ -4,15 +4,21 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import member.ModifyMain;
 import model.VideoDTO;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -24,12 +30,17 @@ public class VideoListController implements Initializable {
 	Parent root;
 	VideoStage vs;
 	VideoService service;
+	ModifyMain mom;//
 	
 	@FXML TextField fxComments0;
 	@FXML TextField fxComments1;
 	@FXML TextField fxComments2;
 	
 	@FXML TableView<CommentDTO> tableView;
+
+	@FXML Button btnShow;//
+	@FXML Button btnHide;//
+	@FXML AnchorPane paneSlide;//
 	
 	public String inputValue;
 	
@@ -41,14 +52,16 @@ public class VideoListController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		vs = new VideoStage();
 		service = new VideoServiceImpl();
-		
+		mom=new ModifyMain();//
 		
 		//for문 돌리고 싶은데 어떻게 해야할까?
 		fxComments0.setPromptText("Comments 입력하세요");
 		fxComments1.setPromptText("Comments 입력하세요");
 		fxComments2.setPromptText("Comments 입력하세요");
 		
-		
+		paneSlide.setTranslateX(-140);//
+		btnShow.setVisible(true);//
+		btnHide.setVisible(false);//
 	}
 	public void setImg() {
 		ArrayList<VideoDTO> videoList = service.getVideoList();
@@ -126,5 +139,46 @@ public class VideoListController implements Initializable {
 		service.commentsDelete(0);
 		System.out.println("삭제버튼 클릭");
 	}
+	
+	////
+	public void showSlide(MouseEvent event) {
+		TranslateTransition slide = new TranslateTransition();
+		slide.setDuration(Duration.seconds(0.4));
+		slide.setNode(paneSlide);
+		slide.setToX(0);
+		slide.play();
+		paneSlide.setTranslateX(-140);
+		slide.setOnFinished((ActionEvent e) -> {
+			btnShow.setVisible(false);
+			btnHide.setVisible(true);
+		});
+	}
+	
+	public void hideSlide(MouseEvent event) {
+		TranslateTransition slide = new TranslateTransition();
+		slide.setDuration(Duration.seconds(0.4));
+		slide.setNode(paneSlide);
+		slide.setToX(-140);
+		slide.play();
+		paneSlide.setTranslateX(0);
+		slide.setOnFinished((ActionEvent e) -> {
+			btnShow.setVisible(true);
+			btnHide.setVisible(false);
+		});
+	}
+
+	public void modifyProc() {
+		System.out.println("회원 정보 수정");
+		try {
+			mom.start();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+
 	
 }
