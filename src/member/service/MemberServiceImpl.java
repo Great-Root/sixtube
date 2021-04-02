@@ -75,31 +75,40 @@ public class MemberServiceImpl implements MemberService{
 
 		boolean gender=getGender();
 
-		int age=getComboBox();
-
+		
+//요기요?
+		
 		TextField id=(TextField)root.lookup("#fxId");
 		PasswordField pw=(PasswordField)root.lookup("#fxPw");
 		PasswordField pw2=(PasswordField)root.lookup("#fxPwChk");
 		TextField name=(TextField)root.lookup("#fxName");
-
+		ComboBox cmb=(ComboBox)root.lookup("#fxAge");//null
 		MemberDTO dto=new MemberDTO();
 		dto.setId(id.getText());
 		dto.setPw(pw.getText());
 		dto.setName(name.getText());
-		dto.setAge(age);
+		
 
 		if(gender) {
 			dto.setGender(0);//여
 		}else {
 			dto.setGender(1);//남
 		}
-
-
 		String pwStr=pw.getText();
 		String pw2Str=pw2.getText();
-		if(pw.getText().isEmpty()) {
+		if(id.getText().isEmpty()) {
+			Controller.cs.alert("아이디를 입력해주세요");
+		}else if(pw.getText().isEmpty()) {
 			Controller.cs.alert("비밀 번호를 입력해주세요");
+		}else if(pw2.getText().isEmpty()) {
+			Controller.cs.alert("비밀 번호 확인 창을 입력해주세요");
+		}else if(cmb.getValue()==null) {
+			Controller.cs.alert("콤보박스를 선택해주세요.");
+		}else if(name.getText().isEmpty()) {
+			Controller.cs.alert("이름을 입력해주세요");
 		}else{
+			int age=(int)cmb.getValue();
+			dto.setAge(age);
 			if(pwStr.equals(pw2Str)) {
 
 				if(pwStr.length()<8) {
@@ -119,10 +128,10 @@ public class MemberServiceImpl implements MemberService{
 				Controller.cs.alert("비밀번호가 일치하지 않습니다.");
 			}
 		}
+		
 	} 
 
-
-
+ 
 
 	@Override
 	public void setRoot(Parent root) {
@@ -170,15 +179,7 @@ public class MemberServiceImpl implements MemberService{
 				cmb.getItems().add(i);}
 		}
 	}
-	public int getComboBox() {
-		ComboBox cmb=(ComboBox)root.lookup("#fxAge");
-		int age=(int)cmb.getValue();
-		if(age==0) {
-			Controller.cs.alert("콤보박스를 선택해주세요.");
-		}
-		return age;
-	}
-
+	
 
 
 }

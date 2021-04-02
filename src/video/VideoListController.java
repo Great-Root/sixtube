@@ -58,7 +58,9 @@ public class VideoListController implements Initializable {
 		vs = new VideoStage();
 		service = new VideoServiceImpl();
 		mom=new ModifyMain();
-		
+		paneSlide.setTranslateX(-140);
+	      btnShow.setVisible(true);
+	      btnHide.setVisible(false);
 	}
 	
 	//TableView내에 Data Mouse 클릭 액션으로 연결

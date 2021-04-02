@@ -51,7 +51,7 @@
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="rdoMan" layoutX="214.0" layoutY="335.0" mnemonicParsing="false" text="남" toggleGroup="$gender" />
-      <ComboBox fx:id="fxAge" layoutX="123.0" layoutY="286.0" prefHeight="22.0" prefWidth="197.0" />
+      <ComboBox fx:id="fxAge" layoutX="123.0" layoutY="286.0" prefHeight="22.0" prefWidth="197.0" promptText="연도 선택" />
       <Label layoutX="45.0" layoutY="283.0" prefHeight="29.0" prefWidth="73.0" text="출생연도">
          <font>
             <Font size="15.0" />
