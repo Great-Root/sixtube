@@ -2,9 +2,12 @@ package video;
 
 import java.io.IOException;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class VideoStage {
@@ -42,6 +45,15 @@ public class VideoStage {
 		controller.setRoot(root);
 		System.out.println(videoId);
 		controller.setVideo(root, videoId);
+		
+		scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(event.getClickCount()==2) {
+					stage.setFullScreen(true);
+				}
+			}
+		});
 		
 		stage.setScene(scene);
 		stage.show();

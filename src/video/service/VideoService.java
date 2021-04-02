@@ -26,7 +26,7 @@ public interface VideoService {
 	public void slowProc();
 	public void fastProc();
 	public void timeDragProc();
-	public void timeClickProc();
+	public void timePressProc();
 	public void setVideo(String mediaName);
 	
 	//CommentDAO Comments 넘겨주고

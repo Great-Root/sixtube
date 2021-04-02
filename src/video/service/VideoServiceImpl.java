@@ -69,7 +69,6 @@ public class VideoServiceImpl implements VideoService {
 		//플레이,볼륨
 		videoPlayer.setVolume(0.1);
 		slider.setValue(10.0);
-		
 		//재생을 누르면 0.5,2배속이 다시 1배속으로 돌아온다.
 		videoPlayer.setRate(1);	
 		videoPlayer.play();
@@ -95,7 +94,7 @@ public class VideoServiceImpl implements VideoService {
 		videoPlayer.seek(Duration.seconds(slider1.getValue()*videoPlayer.getTotalDuration().toSeconds()/100));
 	}
 	@Override
-	public void timeClickProc() {
+	public void timePressProc() {
 		videoPlayer.seek(Duration.seconds(slider1.getValue()*videoPlayer.getTotalDuration().toSeconds()/100));
 	}
 	@Override

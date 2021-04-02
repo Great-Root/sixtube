@@ -10,9 +10,9 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="539.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoController">
+<AnchorPane fx:id="mediaViewPane" prefHeight="539.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoController">
    <children>
-      <MediaView fx:id="fxMediaView" fitHeight="420.0" fitWidth="535.0" layoutX="16.0" layoutY="14.0" />
+      <MediaView fx:id="fxMediaView" fitHeight="${mediaViewPane.height}" fitWidth="${mediaViewPane.width}" />
       <HBox layoutX="3.0" layoutY="490.0" prefHeight="48.0" prefWidth="562.0">
          <children>
             <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playProc" prefHeight="30.0" prefWidth="70.0" text="재생">
@@ -70,6 +70,6 @@
       </HBox>
       <ProgressIndicator fx:id="progressIndicator" layoutX="530.0" layoutY="450.0" progress="0.0" />
       <Label layoutX="14.0" layoutY="463.0" text="시간" />
-      <Slider fx:id="slider1" layoutX="42.0" layoutY="459.0" onMouseClicked="#timeClickProc" onMouseDragged="#timeDragProc" prefHeight="14.0" prefWidth="483.0" showTickMarks="true" />
+      <Slider fx:id="slider1" layoutX="42.0" layoutY="459.0" onMouseDragged="#timeDragProc" onMousePressed="#timePressProc" prefHeight="14.0" prefWidth="483.0" showTickMarks="true" />
    </children>
 </AnchorPane>
