@@ -3,73 +3,110 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mediaViewPane" prefHeight="539.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoController">
-   <children>
-      <MediaView fx:id="fxMediaView" fitHeight="${mediaViewPane.height}" fitWidth="${mediaViewPane.width}" />
-      <HBox layoutX="3.0" layoutY="490.0" prefHeight="48.0" prefWidth="562.0">
+<BorderPane fx:id="mediaViewPane" onMouseEntered="#setOnMouseEntered" onMouseExited="#setOnMouseExited" prefHeight="356.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoController">
+   <center>
+      <StackPane>
          <children>
-            <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playProc" prefHeight="30.0" prefWidth="70.0" text="재생">
-               <padding>
-                  <Insets left="8.0" right="8.0" top="7.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnPause" mnemonicParsing="false" onAction="#pauseProc" prefHeight="30.0" prefWidth="70.0" text="일시정지">
-               <padding>
-                  <Insets left="8.0" right="8.0" top="7.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnStop" mnemonicParsing="false" onAction="#stopProc" prefHeight="30.0" prefWidth="70.0" text="정지">
-               <padding>
-                  <Insets left="8.0" right="8.0" top="7.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnSlow" mnemonicParsing="false" onAction="#slowProc" prefHeight="30.0" prefWidth="70.0" text="x0.5">
-               <padding>
-                  <Insets left="8.0" right="8.0" top="7.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnFast" mnemonicParsing="false" onAction="#fastProc" prefHeight="30.0" prefWidth="70.0" text="x2">
-               <padding>
-                  <Insets left="8.0" right="8.0" top="7.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnMinus" mnemonicParsing="false" onAction="#minusProc" prefHeight="30.0" prefWidth="70.0" text="10초전">
-               <padding>
-                  <Insets left="8.0" right="8.0" top="7.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnPlus" mnemonicParsing="false" onAction="#plusProc" prefHeight="30.0" prefWidth="70.0" text="10초후">
-               <padding>
-                  <Insets left="8.0" right="8.0" top="7.0" />
-               </padding>
-            </Button>
-            <Label text="소리">
-               <padding>
-                  <Insets left="15.0" top="7.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Slider fx:id="slider" onMouseClicked="#volumnClickProc" onMouseDragged="#volumnDragProc" showTickMarks="true">
-               <padding>
-                  <Insets left="15.0" top="7.0" />
-               </padding>
-            </Slider>
+            <MediaView fx:id="fxMediaView" fitHeight="${mediaViewPane.height}" fitWidth="${mediaViewPane.width}" />
+            <VBox fx:id="icons" alignment="BOTTOM_CENTER">
+               <children>
+                  <StackPane prefHeight="0.0" prefWidth="0.0">
+                     <children>
+                        <Slider fx:id="slider1" onMouseDragged="#timeDragProc" onMousePressed="#timePressProc" />
+                     </children>
+                  </StackPane>
+                  <HBox alignment="CENTER_LEFT" spacing="7.0">
+                     <children>
+                        <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playProc" prefHeight="30.0" prefWidth="70.0" text="▶">
+                           <padding>
+                              <Insets left="8.0" right="8.0" top="7.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnPause" mnemonicParsing="false" onAction="#pauseProc" prefHeight="30.0" prefWidth="70.0" text="❚❚">
+                           <padding>
+                              <Insets left="8.0" right="8.0" top="7.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnStop" mnemonicParsing="false" onAction="#stopProc" prefHeight="30.0" prefWidth="70.0" text="■">
+                           <padding>
+                              <Insets left="8.0" right="8.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSlow" mnemonicParsing="false" onAction="#slowProc" prefHeight="30.0" prefWidth="70.0" text="x0.5">
+                           <padding>
+                              <Insets left="8.0" right="8.0" top="7.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnFast" mnemonicParsing="false" onAction="#fastProc" prefHeight="30.0" prefWidth="70.0" text="x2">
+                           <padding>
+                              <Insets left="8.0" right="8.0" top="7.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnMinus" mnemonicParsing="false" onAction="#minusProc" prefHeight="30.0" prefWidth="70.0" text="10초전">
+                           <padding>
+                              <Insets left="8.0" right="8.0" top="7.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnPlus" mnemonicParsing="false" onAction="#plusProc" prefHeight="30.0" prefWidth="70.0" text="10초후">
+                           <padding>
+                              <Insets left="8.0" right="8.0" top="7.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Label prefHeight="24.0" prefWidth="24.0" text="🔉">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Slider fx:id="slider" onMouseClicked="#volumnClickProc" onMouseDragged="#volumnDragProc" prefHeight="24.0" prefWidth="109.0" showTickMarks="true">
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </Slider>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="12.0" right="12.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="690.0" progress="0.0" />
+               </children>
+            </VBox>
          </children>
-         <padding>
-            <Insets left="7.0" right="5.0" top="7.0" />
-         </padding>
-      </HBox>
-      <ProgressIndicator fx:id="progressIndicator" layoutX="530.0" layoutY="450.0" progress="0.0" />
-      <Label layoutX="14.0" layoutY="463.0" text="시간" />
-      <Slider fx:id="slider1" layoutX="42.0" layoutY="459.0" onMouseDragged="#timeDragProc" onMousePressed="#timePressProc" prefHeight="14.0" prefWidth="483.0" showTickMarks="true" />
-   </children>
-</AnchorPane>
+      </StackPane>
+   </center>
+</BorderPane>
