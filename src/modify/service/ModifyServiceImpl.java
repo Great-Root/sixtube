@@ -28,8 +28,12 @@ public class ModifyServiceImpl implements ModifyService {
 		String nowStr=nowPw.getText();
 		String newStr=newPw.getText();
 		String newCheckStr=newPwCheck.getText();
-		if(nowPw.getText().isEmpty()||newPw.getText().isEmpty()||newPwCheck.getText().isEmpty()) {
-	         Controller.cs.alert("비밀 번호를 입력해주세요");
+		if(nowPw.getText().isEmpty()){
+			Controller.cs.alert("현재 비밀 번호를 입력해주세요");
+		}else if(newPw.getText().isEmpty()) {
+			Controller.cs.alert("변경할 비밀 번호를 입력해주세요");
+		}else if(newPwCheck.getText().isEmpty()){
+	         Controller.cs.alert("변경할 비밀 번호 확인란을 입력해주세요");
 	      }else{
 	         if(newStr.equals(newCheckStr)) {
 	            
