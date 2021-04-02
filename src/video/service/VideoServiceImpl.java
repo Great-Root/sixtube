@@ -4,25 +4,15 @@ import java.util.ArrayList;
 
 import database.video.VideoDAO;
 import database.video.VideoDAOImpl;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
-import member.Controller;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.VideoDTO;
@@ -37,7 +27,6 @@ public class VideoServiceImpl implements VideoService {
 	MediaView videoView;
 	Button btnSlow,btnFast;
 	VBox icons;
-	ProgressBar progressBar; 
 	Button btnPlay,btnPause,btnStop,btnPlus,btnMinus;
 	Slider slider, slider1;
 	
@@ -136,8 +125,6 @@ public class VideoServiceImpl implements VideoService {
 	public void setVideo(String mediaName) {
 	
 		
-		//labelTime =(Label)root.lookup("#labelTime");
-		progressBar =(ProgressBar)root.lookup("#progressBar");
 		slider = (Slider)root.lookup("#slider");
 		slider1 =(Slider)root.lookup("#slider1");
 		

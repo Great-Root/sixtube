@@ -30,10 +30,6 @@ public class VideoController implements Initializable {
 		vs = new VideoStage();
 		service = new VideoServiceImpl();
 	}
-//	@FXML
-//	private void actionCloseWindow(MouseEvent event) {
-//		System.exit(0);
-//	}
 
 	public void playProc() {
 		service.playProc();
