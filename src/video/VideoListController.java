@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,6 +43,8 @@ public class VideoListController implements Initializable {
 	MemberServiceImpl ms;
 	TextField tf;
 	
+	Button btnCompl;
+	
 	CommentDTO seletedDTO;
 	
 	public String inputValue;
@@ -52,7 +56,8 @@ public class VideoListController implements Initializable {
 	
 	public void setReviseRoot(Parent reviseRoot) {
 		this.reviseRoot = reviseRoot;
-	}
+		btnCompl = (Button)reviseRoot.lookup("#btnCompl");
+		}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		vs = new VideoStage();
@@ -63,23 +68,26 @@ public class VideoListController implements Initializable {
 	
 	//TableView내에 Data Mouse 클릭 액션으로 연결
 	public void click(MouseEvent e) {
-		
-		//TableView 에 클릭 액션이 된 줄의 source를 tw 변수에 저장.
 		TableView<CommentDTO> tw = (TableView<CommentDTO>) e.getSource();
 		
 		
 		//선택한 tableview의 정보를 전부 selectedDTO에 저장.
 		seletedDTO = tw.getSelectionModel().getSelectedItem();
-		btnRevDisable();
-		btnDelDisable();
-		//클릭 된 tableview에 수정버튼 활성화
-		((Button)root.lookup("#btnRev"+seletedDTO.getVnum())).setDisable(false);
-		
 		paneSlide.setTranslateX(-140);//
 		btnShow.setVisible(true);//
 		btnHide.setVisible(false);//
-		//클릭 된 tableview에 삭제버튼 활성화
-		((Button)root.lookup("#btnDel"+seletedDTO.getVnum())).setDisable(false);
+		
+		if(seletedDTO != null) {
+			//TableView 에 클릭 액션이 된 줄의 source를 tw 변수에 저장.
+			btnRevDisable();
+			btnDelDisable();
+			//클릭 된 tableview에 수정버튼 활성화
+			((Button)root.lookup("#btnRev"+seletedDTO.getVnum())).setDisable(false);
+			
+			//클릭 된 tableview에 삭제버튼 활성화
+			((Button)root.lookup("#btnDel"+seletedDTO.getVnum())).setDisable(false);
+			
+		} 
 	}
 	
 	public void btnRevDisable() {
@@ -99,9 +107,31 @@ public class VideoListController implements Initializable {
 	//revisecontent.fxml에서의 수정완료 버튼.
 	public void CompleteProc() {
 		seletedDTO.setContent(new SimpleStringProperty(tf.getText()));
-		service.commentsRevise(seletedDTO);
-		Controller.cs.exit(reviseRoot);
-		setListView();
+		String n = seletedDTO.getContent();
+		if(n.length() < 50) {
+			
+			service.commentsRevise(seletedDTO);
+			Controller.cs.exit(reviseRoot);
+			Controller.cs.alert("수정되었습니다.");
+			setListView();
+		}else {
+			Controller.cs.alert("입력 가능한 글자 수는 최대 50글자입니다. \n현재 입력한 글자 수는 : " + n.length()+ "입니다");
+		}
+	}
+	
+	public void reviseEnter() {
+		seletedDTO.setContent(new SimpleStringProperty(tf.getText()));
+		String n = seletedDTO.getContent();
+		if(n.length() < 50) {
+			
+			service.commentsRevise(seletedDTO);
+			Controller.cs.exit(reviseRoot);
+			Controller.cs.alert("수정되었습니다.");
+			setListView();
+		}else {
+			Controller.cs.alert("입력 가능한 글자 수는 최대 50글자입니다. \n현재 입력한 글자 수는 : " + n.length()+ "입니다");
+		}
+		
 	}
 	
 	public void setImg() {
@@ -129,23 +159,30 @@ public class VideoListController implements Initializable {
 		//textField에 삽입한 값을 String 형태로 저장.
 		inputValue = tf.getText(); 
 		
-		//입력 값 삭제
-		tf.clear();
+		if(inputValue.length() < 50) {
+			//입력 값 삭제
+			tf.clear();
+			
+			//TextField내의 id값을 String id 변수에 저장.
+			String id =((TextField)e.getSource()).getId();
+			
+			//String id의 마지막 값을 char ch변수에 저장
+			char ch = id.charAt(id.length()-1);
+			
+			//Character.getNumericValue(); 메서드를 통해서 char형을 int형(vnum변수)으로 변환.
+			int vnum = Character.getNumericValue(ch);
+			
+			//dto (cnum,usrId,content,vnum) , 만든 정보를 dto 변수에 저장.
+			CommentDTO dto = new CommentDTO(0, Controller.lu.getUserId(),inputValue,vnum);
+			
+			service.sendComments(dto);
+			setListView();
+			
+		}else {
+			Controller.cs.alert("입력 가능한 글자 수는 최대 50글자입니다. \n현재 입력한 글자 수는 : " + inputValue.length()+ "입니다");
+//			Controller.cs.alert("현재 입력한 글자 수는 : " + inputValue.length() + "입니다");
+		}
 		
-		//TextField내의 id값을 String id 변수에 저장.
-		String id =((TextField)e.getSource()).getId();
-		
-		//String id의 마지막 값을 char ch변수에 저장
-		char ch = id.charAt(id.length()-1);
-		
-		//Character.getNumericValue(); 메서드를 통해서 char형을 int형(vnum변수)으로 변환.
-		int vnum = Character.getNumericValue(ch);
-		
-		//dto (cnum,usrId,content,vnum) , 만든 정보를 dto 변수에 저장.
-		CommentDTO dto = new CommentDTO(0, Controller.lu.getUserId(),inputValue,vnum);
-		
-		service.sendComments(dto);
-		setListView();
 		}
 	
 	
@@ -175,6 +212,7 @@ public class VideoListController implements Initializable {
 		
 		btnRevDisable();
 		btnDelDisable();
+		
 	}
 	
 	public void changeCont(CommentDTO seleteddto) {
@@ -215,7 +253,7 @@ public class VideoListController implements Initializable {
 		if(Controller.lu.getUserId().equals(seletedDTO.getUserId())) {
 			//true면 service class의 commentsDelete();메서드로 click();메서드에서 저장되었던 selectedNum(cnum)값을 넣어서 넘겨준다.
 			service.commentsDelete(seletedDTO.getCnum());
-			
+			Controller.cs.alert("삭제되었습니다.");
 			setListView();
 			System.out.println("삭제버튼 클릭");
 		}else {
@@ -257,5 +295,16 @@ public class VideoListController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void btnEntered() {
+		btnCompl.setStyle("-fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 25; -fx-border-width: 3");
+		
+	}
+	
+	public void btnExited() {
+		btnCompl.setStyle("-fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 25;");
+	}
+	
+	
 	
 }

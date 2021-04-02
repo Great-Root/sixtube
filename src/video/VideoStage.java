@@ -65,6 +65,7 @@ public class VideoStage {
         });
 		
 
+		
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -84,6 +85,7 @@ public class VideoStage {
 		
 		controller.setReviseRoot(root);
 		controller.changeCont(dto);
+		stage.setTitle("Comments 수정 창");
 		stage.setScene(scene);
 		stage.show();
 	}
