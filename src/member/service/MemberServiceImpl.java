@@ -1,12 +1,7 @@
 package member.service;
 
-
-import java.util.ArrayList;
-
-import common.LoginUser;
 import database.member.MemberDAO;
 import database.member.MemberDAOImpl;
-import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -15,12 +10,11 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import member.Controller;
 import model.MemberDTO;
-import video.VideoStage;
 
 
 public class MemberServiceImpl implements MemberService{
 	Parent root;
-
+	private boolean isIdchk = false;
 
 	@Override
 	public boolean login(Parent root) {
@@ -82,7 +76,7 @@ public class MemberServiceImpl implements MemberService{
 		PasswordField pw=(PasswordField)root.lookup("#fxPw");
 		PasswordField pw2=(PasswordField)root.lookup("#fxPwChk");
 		TextField name=(TextField)root.lookup("#fxName");
-		ComboBox cmb=(ComboBox)root.lookup("#fxAge");//null
+		ComboBox cmb=(ComboBox)root.lookup("#fxAge");
 		MemberDTO dto=new MemberDTO();
 		dto.setId(id.getText());
 		dto.setPw(pw.getText());
@@ -96,16 +90,20 @@ public class MemberServiceImpl implements MemberService{
 		}
 		String pwStr=pw.getText();
 		String pw2Str=pw2.getText();
-		if(id.getText().isEmpty()) {
+		if(dto.getId().length() > 10 || dto.getName().length() > 10) {
+			Controller.cs.alert("아이디 또는 이름의 글자수를 10글자 이하로 줄여주세요");
+		}else if(id.getText().isEmpty()) {
 			Controller.cs.alert("아이디를 입력해주세요");
 		}else if(pw.getText().isEmpty()) {
 			Controller.cs.alert("비밀 번호를 입력해주세요");
 		}else if(pw2.getText().isEmpty()) {
 			Controller.cs.alert("비밀 번호 확인 창을 입력해주세요");
 		}else if(cmb.getValue()==null) {
-			Controller.cs.alert("콤보박스를 선택해주세요.");
+			Controller.cs.alert("생일년도를 선택해주세요.");
 		}else if(name.getText().isEmpty()) {
 			Controller.cs.alert("이름을 입력해주세요");
+		}else if(!isIdchk) {
+			Controller.cs.alert("아이디 중복체크를 해주세요");
 		}else{
 			int age=(int)cmb.getValue();
 			dto.setAge(age);
@@ -147,7 +145,7 @@ public class MemberServiceImpl implements MemberService{
 
 
 	@Override
-	public boolean checkId() {
+	public void checkId() {
 		TextField id=(TextField)root.lookup("#fxId");
 
 		if(id.getText().isEmpty()) {
@@ -156,11 +154,12 @@ public class MemberServiceImpl implements MemberService{
 			MemberDAO ds=new MemberDAOImpl();
 			if(ds.checkMemberID(id.getText())) {
 				Controller.cs.alert("중복된 아이디입니다.");
+				isIdchk = false;
 			}else {
 				Controller.cs.alert("사용가능한 아이디입니다.");
+				isIdchk = true;
 			}
 		}
-		return true;
 	}
 
 

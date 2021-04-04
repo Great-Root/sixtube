@@ -1,17 +1,13 @@
 package video;
 
 import java.io.IOException;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.CommentDTO;
-import javafx.scene.input.MouseEvent;
 
 public class VideoStage {
 	
@@ -50,14 +46,7 @@ public class VideoStage {
 		controller.setRoot(root);
 		controller.setVideo(videoId);
 		
-		scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if(event.getClickCount()==2) {
-					stage.setFullScreen(true);
-				}
-			}
-		});
+		
 		//비디오 뷰에서 X버튼 눌렀을 경우 비디오 정지 시키는 코드
 		stage.setOnCloseRequest(event->{
 			controller.service.stopProc();

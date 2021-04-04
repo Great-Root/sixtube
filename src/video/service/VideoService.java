@@ -1,8 +1,6 @@
 package video.service;
 
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 import model.VideoDTO;
@@ -21,6 +19,11 @@ public interface VideoService {
 	public void stopProc();
 	public void volumnDragProc();
 	public void volumnClickProc();
+	
+	public void volPlus();
+	public void volminus();
+	
+	
 	public void plusProc();
 	public void minusProc();
 	public void slowProc();
@@ -41,11 +44,9 @@ public interface VideoService {
 	//delete
 	void commentsDelete(int cnum);
 
-	public void setVideoWidth(double width);
-	
-	public double getHeight(double width);
-
 	public void iconVisible();
 
 	public void iconDisVisible();
+
+	public void videoMute();
 }

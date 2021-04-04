@@ -14,7 +14,7 @@ public class MemberController implements Initializable{
 	Parent root;
 	MemberService ms;
 	
-	public static CommonService cs;//
+	public static CommonService cs;
 	static {
 		cs = new CommonClass();
 	}

@@ -5,11 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import common.LoginUser;
 import member.Controller;
-import member.service.MemberService;
 import member.service.MemberServiceImpl;
 import model.MemberDTO;
 import modify.service.ModifyServiceImpl;

@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 
 import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,14 +30,15 @@ import video.service.VideoServiceImpl;
 
 public class VideoListController implements Initializable {
 	
-	static Parent root, reviseRoot;
+	static Parent root;
+	Parent reviseRoot;
 	VideoStage vs;
 	VideoService service;
-	ModifyMain mom;//
+	ModifyMain mom;
 
-	@FXML Button btnShow;//
-	@FXML Button btnHide;//
-	@FXML AnchorPane paneSlide;//
+	@FXML Button btnShow;
+	@FXML Button btnHide;
+	@FXML AnchorPane paneSlide;
 	MemberServiceImpl ms;
 	TextField tf;
 	
@@ -50,7 +49,10 @@ public class VideoListController implements Initializable {
 	public String inputValue;
 	
 	public void setRoot(Parent root) {
-		this.root = root;
+		VideoListController.root = root;
+		paneSlide.setTranslateX(-140);
+		btnShow.setVisible(true);
+		btnHide.setVisible(false);
 	}
 	
 	
@@ -63,9 +65,6 @@ public class VideoListController implements Initializable {
 		vs = new VideoStage();
 		service = new VideoServiceImpl();
 		mom=new ModifyMain();
-		paneSlide.setTranslateX(-140);
-	      btnShow.setVisible(true);
-	      btnHide.setVisible(false);
 	}
 	
 	//TableView내에 Data Mouse 클릭 액션으로 연결
@@ -75,9 +74,9 @@ public class VideoListController implements Initializable {
 		
 		//선택한 tableview의 정보를 전부 selectedDTO에 저장.
 		seletedDTO = tw.getSelectionModel().getSelectedItem();
-		paneSlide.setTranslateX(-140);//
-		btnShow.setVisible(true);//
-		btnHide.setVisible(false);//
+		paneSlide.setTranslateX(-140);
+		btnShow.setVisible(true);
+		btnHide.setVisible(false);
 		
 		if(seletedDTO != null) {
 			//TableView 에 클릭 액션이 된 줄의 source를 tw 변수에 저장.
@@ -124,7 +123,7 @@ public class VideoListController implements Initializable {
 	public void reviseEnter() {
 		seletedDTO.setContent(new SimpleStringProperty(tf.getText()));
 		String n = seletedDTO.getContent();
-		if(n.length() < 50) {
+		if(n.length() <= 50) {
 			
 			service.commentsRevise(seletedDTO);
 			Controller.cs.exit(reviseRoot);
@@ -161,7 +160,7 @@ public class VideoListController implements Initializable {
 		//textField에 삽입한 값을 String 형태로 저장.
 		inputValue = tf.getText(); 
 		
-		if(inputValue.length() < 50) {
+		if(inputValue.length() <= 50) {
 			//입력 값 삭제
 			tf.clear();
 			
@@ -182,7 +181,6 @@ public class VideoListController implements Initializable {
 			
 		}else {
 			Controller.cs.alert("입력 가능한 글자 수는 최대 50글자입니다. \n현재 입력한 글자 수는 : " + inputValue.length()+ "입니다");
-//			Controller.cs.alert("현재 입력한 글자 수는 : " + inputValue.length() + "입니다");
 		}
 		
 		}
@@ -239,7 +237,6 @@ public class VideoListController implements Initializable {
 		
 		//로그인 한 id와 현재 tableview에 있는 id와 비교
 		if(Controller.lu.getUserId().equals(seletedDTO.getUserId())) {
-			
 			//true면 videoStage에 정보를 가지고 넘겨준다.
 			vs.showContentView(seletedDTO);
 		}else {
@@ -257,7 +254,6 @@ public class VideoListController implements Initializable {
 			service.commentsDelete(seletedDTO.getCnum());
 			Controller.cs.alert("삭제되었습니다.");
 			setListView();
-			System.out.println("삭제버튼 클릭");
 		}else {
 			Controller.cs.alert("작성자만 삭제가 가능합니다.");
 		}

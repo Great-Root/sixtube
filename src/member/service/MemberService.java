@@ -8,6 +8,6 @@ public interface MemberService {
 	public void join();
 	public void setRoot(Parent root);
 	public void memberClose();
-	public boolean checkId();
+	public void checkId();
 	
 }

@@ -1,6 +1,5 @@
 package member;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,8 +7,6 @@ import common.CommonClass;
 import common.CommonService;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.stage.Stage;
-import member.service.MemberServiceImpl;
 import modify.service.ModifyService;
 import modify.service.ModifyServiceImpl;
 

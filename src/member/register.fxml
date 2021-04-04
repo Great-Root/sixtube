@@ -26,20 +26,20 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="fxId" layoutX="117.0" layoutY="123.0" onAction="#onEnter" prefHeight="30.0" prefWidth="197.0" />
-      <PasswordField fx:id="fxPw" layoutX="117.0" layoutY="193.0" onAction="#onEnter" prefHeight="30.0" prefWidth="197.0" />
+      <TextField fx:id="fxId" layoutX="117.0" layoutY="123.0" onAction="#onEnter" prefHeight="30.0" prefWidth="197.0" promptText="10글자 이하" />
+      <PasswordField fx:id="fxPw" layoutX="117.0" layoutY="193.0" onAction="#onEnter" prefHeight="30.0" prefWidth="197.0" promptText="8글자 이상" />
       <Label layoutX="45.0" layoutY="234.0" prefHeight="29.0" prefWidth="101.0" text="PW확인">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <PasswordField fx:id="fxPwChk" layoutX="117.0" layoutY="233.0" onAction="#onEnter" prefHeight="30.0" prefWidth="197.0" />
+      <PasswordField fx:id="fxPwChk" layoutX="117.0" layoutY="233.0" onAction="#onEnter" prefHeight="30.0" prefWidth="197.0" promptText="8글자 이상" />
       <Label layoutX="68.0" layoutY="377.0" prefHeight="29.0" prefWidth="50.0" text="이름">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="fxName" layoutX="119.0" layoutY="376.0" onAction="#onEnter" prefHeight="30.0" prefWidth="197.0" />
+      <TextField fx:id="fxName" layoutX="119.0" layoutY="376.0" onAction="#onEnter" prefHeight="30.0" prefWidth="197.0" promptText="10글자 이하" />
       <Label layoutX="73.0" layoutY="329.0" prefHeight="29.0" prefWidth="50.0" text="성별">
          <font>
             <Font size="15.0" />

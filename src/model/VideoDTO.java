@@ -1,11 +1,8 @@
 package model;
 
-import java.sql.Timestamp;
-
 public class VideoDTO {
 	private int vnum;
 	private String title;
-	private Timestamp vdate;
 	private int likes;
 	private String vpath;
 	private String thpath;
