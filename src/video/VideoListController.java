@@ -46,7 +46,7 @@ public class VideoListController implements Initializable {
 	
 	CommentDTO seletedDTO;
 	
-	public String inputValue;
+	String inputValue;
 	
 	public void setRoot(Parent root) {
 		VideoListController.root = root;
@@ -70,7 +70,6 @@ public class VideoListController implements Initializable {
 	//TableView내에 Data Mouse 클릭 액션으로 연결
 	public void click(MouseEvent e) {
 		TableView<CommentDTO> tw = (TableView<CommentDTO>) e.getSource();
-		
 		
 		//선택한 tableview의 정보를 전부 selectedDTO에 저장.
 		seletedDTO = tw.getSelectionModel().getSelectedItem();
@@ -143,12 +142,17 @@ public class VideoListController implements Initializable {
 			Label title = (Label) root.lookup("#labelTitle"+id);
 			title.setText(video.getTitle());
 			iv.setImage(new Image(video.getThpath()));
-			iv.setId(video.getVpath());
+			iv.setUserData(video);
 		}
 	}
+	
+	public void setUserData(VideoDTO dto) {
+		
+	}
+	
 	public void imgClickProc(MouseEvent e) {
 		if(e.getClickCount()>1) {
-			service.getVideo(((ImageView)e.getSource()).getId());
+			service.getVideo((ImageView)e.getSource());
 		}
 	}
 	
@@ -232,8 +236,6 @@ public class VideoListController implements Initializable {
 	
 	//수정 버튼 클릭
 	public void reviseProc() {
-		
-		
 		
 		//로그인 한 id와 현재 tableview에 있는 id와 비교
 		if(Controller.lu.getUserId().equals(seletedDTO.getUserId())) {

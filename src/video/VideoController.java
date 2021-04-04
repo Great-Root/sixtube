@@ -5,9 +5,11 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.VideoDTO;
 import video.service.VideoService;
 import video.service.VideoServiceImpl;
 
@@ -65,8 +67,8 @@ public class VideoController implements Initializable {
 	public void fastProc() {
 		service.fastProc();
 	}
-	public void setVideo(String vpath) {
-		service.setVideo(vpath);
+	public void setVideo(ImageView iv) {
+		service.setVideo(iv);
 	}
 	
 	public void setOnMousePressed(MouseEvent e) {

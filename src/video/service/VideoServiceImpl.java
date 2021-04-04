@@ -2,24 +2,13 @@ package video.service;
 
 import java.util.ArrayList;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.scene.BoundsAccessor;
-
 import database.video.VideoDAO;
 import database.video.VideoDAOImpl;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.control.Tooltip;
-import javafx.scene.control.skin.SliderSkin;
-import javafx.scene.effect.Effect;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -35,7 +24,6 @@ public class VideoServiceImpl implements VideoService {
 
 	VideoDAO dao = new VideoDAOImpl();
 	Parent root;
-	BorderPane main;
 	MediaPlayer videoPlayer;
 	MediaView videoView;
 	Button btnSlow,btnFast;
@@ -43,7 +31,6 @@ public class VideoServiceImpl implements VideoService {
 	Button btnPlay,btnPause,btnStop,btnPlus,btnMinus;
 	Slider volBar, playBar;
 	Label volicon,volmute;
-	
 	
 
 	VideoStage vs = new VideoStage();
@@ -63,12 +50,11 @@ public class VideoServiceImpl implements VideoService {
 		volmute = (Label)root.lookup("#volmute");
 		volBar = (Slider)root.lookup("#slider");
 		playBar =(Slider)root.lookup("#slider1");
-		main = (BorderPane)root.lookup("#mediaViewPane");
 	}
 
 	@Override
-	public void getVideo(String vpath) {
-		vs.showVideoView(vpath);
+	public void getVideo(ImageView iv) {
+		vs.showVideoView(iv);
 	}
 	@Override
 	public ArrayList<VideoDTO> getVideoList() {
@@ -92,12 +78,8 @@ public class VideoServiceImpl implements VideoService {
 	}
 	@Override 
 	public void playProc() {
-		//플레이,볼륨
-		videoPlayer.setVolume(0.1);
-		volBar.setValue(10.0);
 		//재생을 누르면 0.5,2배속이 다시 1배속으로 돌아온다.
 		videoPlayer.setRate(1);	
-		
 		//플레이
 		videoPlayer.play();
 	}
@@ -171,8 +153,8 @@ public class VideoServiceImpl implements VideoService {
 		videoPlayer.setMute(mute);
 	}
 	@Override
-	public void setVideo(String mediaName) {
-		
+	public void setVideo(ImageView iv) {
+		VideoDTO dto = (VideoDTO)iv.getUserData();
 		//비디오 버튼들 포커스 이동 막는 코드
 		btnPlay.setFocusTraversable(false);
 		btnPause.setFocusTraversable(false);
@@ -183,7 +165,7 @@ public class VideoServiceImpl implements VideoService {
 		btnFast.setFocusTraversable(false);
 		volBar.setFocusTraversable(false);
 		
-		Media media = new Media(getClass().getResource("../"+mediaName).toString());
+		Media media = new Media(getClass().getResource("../"+dto.getVpath()).toString());
 		videoPlayer = new MediaPlayer(media);
 		videoView.setMediaPlayer(videoPlayer);
 		
@@ -192,6 +174,7 @@ public class VideoServiceImpl implements VideoService {
 			setVolIcon((double)newV);
 		});
 		
+		//음소거 작동 코드 <
 		videoPlayer.muteProperty().addListener((ob,oldV,newV)->{
 			if(newV) {
 				volicon.setDisable(true);
@@ -205,7 +188,9 @@ public class VideoServiceImpl implements VideoService {
 				volmute.setVisible(false);
 			}
 		});
+		// >
 		
+		//볼륨바 작동 코드 <
 		videoPlayer.volumeProperty().addListener((ob,oldV,newV)->{
 			int vol = (int)(newV.doubleValue() * 100);
 			vol = vol >= 100 ? 100 : vol <= 0 ? 0 : vol; 
@@ -214,26 +199,28 @@ public class VideoServiceImpl implements VideoService {
 					vol, vol);
 			((StackPane)volBar.lookup(".track")).setStyle(style);
 		});
+		// >
 		
+		//재생바 작동 코드 <
 		playBar.valueProperty().addListener((ob,oldV,newV) -> {
 			double newVal = newV.doubleValue();
 			String style = String.format("-fx-background-color: linear-gradient(to right, #d10000 %f%%, #969696 %f%%);",
 					newVal, newVal);
 			((StackPane)playBar.lookup(".track")).setStyle(style);
 		});
+		
 		playBar.setOnMouseEntered((arg0)->{
 			(playBar.lookup(".thumb")).setVisible(true);
 		});
 		playBar.setOnMouseExited((arg0)->{
 			(playBar.lookup(".thumb")).setVisible(false);
 		});
-		
 		videoPlayer.currentTimeProperty().addListener((obj,oldValue,newValue)->{
 			playBar.setValue(newValue.toSeconds()*100/ videoPlayer.getTotalDuration().toSeconds());
 		});
+		// >
 		
-		
-		//동영상 기능 코드
+		//동영상 기능 코드 <
 		videoPlayer.setOnReady(()->{
 			(playBar.lookup(".thumb")).setVisible(false);
 			(playBar.lookup(".thumb")).setStyle("-fx-background-color: #d10000;");
@@ -251,7 +238,6 @@ public class VideoServiceImpl implements VideoService {
 			btnMinus.setDisable(true);
 			btnSlow.setDisable(true);
 			btnFast.setDisable(true);
-			
 		});
 		
 		videoPlayer.setOnPlaying(()->{
@@ -301,6 +287,7 @@ public class VideoServiceImpl implements VideoService {
 			btnSlow.setDisable(true);
 			btnFast.setDisable(true);
 		});
+		// >
 			
 	}
 

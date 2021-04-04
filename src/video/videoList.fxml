@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="btnMenu" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoListController">
+<AnchorPane fx:id="btnMenu" prefHeight="836.0" prefWidth="683.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoListController">
    <children>
       <ImageView fitHeight="61.0" fitWidth="111.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -49,24 +48,23 @@
                   <VBox prefHeight="218.0" prefWidth="294.0">
                      <children>
                         <ImageView fx:id="fxImg0" fitHeight="208.0" fitWidth="299.0" onMouseClicked="#imgClickProc" pickOnBounds="true" preserveRatio="true" />
-                        <ProgressBar fx:id="progress1" prefHeight="88.0" prefWidth="299.0" progress="0.0" />
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="9.0" prefWidth="299.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="75.0" text="플레이 타임" />
-                              <Label fx:id="labelTime1" prefHeight="24.0" prefWidth="104.0" text="0/0 sec" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label prefHeight="14.0" prefWidth="75.0" text="제목" />
-                              <Label fx:id="labelTitle0" prefHeight="24.0" prefWidth="104.0" text="제목이 들어갈 자리" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="75.0" text="제목">
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding></Label>
+                              <Label fx:id="labelTitle0" alignment="CENTER" contentDisplay="CENTER" prefHeight="4.0" prefWidth="225.0" text="제목이 들어갈 자리">
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding></Label>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                   <VBox prefHeight="236.0" prefWidth="382.0">
                      <children>
-                        <TableView fx:id="fxTable0" onMouseClicked="#click" prefHeight="186.0" prefWidth="375.0">
+                        <TableView fx:id="fxTable0" onMouseClicked="#click" prefHeight="258.0" prefWidth="379.0">
                            <columns>
                               <TableColumn prefWidth="75.0" text="ID">
                                  <cellValueFactory>
@@ -109,24 +107,25 @@
                   <VBox prefHeight="218.0" prefWidth="294.0">
                      <children>
                         <ImageView fx:id="fxImg1" fitHeight="208.0" fitWidth="299.0" onMouseClicked="#imgClickProc" pickOnBounds="true" preserveRatio="true" />
-                        <ProgressBar fx:id="progress11" prefHeight="88.0" prefWidth="299.0" progress="0.0" />
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="75.0" text="플레이 타임" />
-                              <Label fx:id="labelTime11" prefHeight="24.0" prefWidth="104.0" text="0/0 sec" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label prefHeight="14.0" prefWidth="75.0" text="제목" />
-                              <Label fx:id="labelTitle1" prefHeight="24.0" prefWidth="104.0" text="제목이 들어갈 자리" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="75.0" text="제목">
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="labelTitle1" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="226.0" text="제목이 들어갈 자리">
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                   <VBox prefHeight="236.0" prefWidth="384.0">
                      <children>
-                        <TableView fx:id="fxTable1" onMouseClicked="#click" prefHeight="186.0" prefWidth="358.0">
+                        <TableView fx:id="fxTable1" onMouseClicked="#click" prefHeight="258.0" prefWidth="379.0">
                            <columns>
                               <TableColumn prefWidth="75.0" text="ID">
                                  <cellValueFactory>
@@ -165,24 +164,23 @@
                   <VBox prefHeight="218.0" prefWidth="294.0">
                      <children>
                         <ImageView fx:id="fxImg2" fitHeight="208.0" fitWidth="299.0" onMouseClicked="#imgClickProc" pickOnBounds="true" preserveRatio="true" />
-                        <ProgressBar fx:id="progress12" prefHeight="88.0" prefWidth="299.0" progress="0.0" />
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="40.0" prefWidth="299.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="75.0" text="플레이 타임" />
-                              <Label fx:id="labelTime12" prefHeight="24.0" prefWidth="104.0" text="0/0 sec" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label prefHeight="14.0" prefWidth="75.0" text="제목" />
-                              <Label fx:id="labelTitle2" prefHeight="24.0" prefWidth="104.0" text="제목이 들어갈 자리" />
+                              <Label alignment="CENTER" prefHeight="14.0" prefWidth="75.0" text="제목">
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding></Label>
+                              <Label fx:id="labelTitle2" alignment="CENTER" prefHeight="27.0" prefWidth="228.0" text="제목이 들어갈 자리">
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding></Label>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                   <VBox prefHeight="236.0" prefWidth="384.0">
                      <children>
-                        <TableView fx:id="fxTable2" onMouseClicked="#click" prefHeight="263.0" prefWidth="295.0">
+                        <TableView fx:id="fxTable2" onMouseClicked="#click" prefHeight="258.0" prefWidth="379.0">
                            <columns>
                               <TableColumn prefWidth="75.0" text="ID">
                                  <cellValueFactory>

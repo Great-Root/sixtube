@@ -1,6 +1,7 @@
 package video.service;
 
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import model.VideoDTO;
@@ -10,7 +11,7 @@ public interface VideoService {
 	
 	public void setRoot(Parent root);
 
-	public void getVideo(String vpath);
+	public void getVideo(ImageView iv);
 
 	ArrayList<VideoDTO> getVideoList();
 	//재생,일시정지,정지,볼륨드래그,볼륨클릭,10초후,10초전,0.5배속,2배속,영상시간드래그,영상시간클릭 
@@ -30,7 +31,7 @@ public interface VideoService {
 	public void fastProc();
 	public void timeDragProc();
 	public void timePressProc();
-	public void setVideo(String mediaName);
+	public void setVideo(ImageView iv);
 	
 	//CommentDAO Comments 넘겨주고
 	void sendComments(CommentDTO dto);

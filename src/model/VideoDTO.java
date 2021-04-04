@@ -1,6 +1,6 @@
 package model;
 
-public class VideoDTO {
+public class VideoDTO{
 	private int vnum;
 	private String title;
 	private int likes;

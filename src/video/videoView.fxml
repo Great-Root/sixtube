@@ -20,92 +20,98 @@
                <children>
                   <StackPane prefHeight="0.0" prefWidth="0.0">
                      <children>
-                        <Slider fx:id="slider1" blockIncrement="0.0" onKeyPressed="#setOnKeyPressed" onMouseDragged="#timeDragProc" onMousePressed="#timePressProc" />
+                        <HBox opacity="0.5" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: gray;" />
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Slider fx:id="slider1" blockIncrement="0.0" onKeyPressed="#setOnKeyPressed" onMouseDragged="#timeDragProc" onMousePressed="#timePressProc">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Slider>
+                              <HBox alignment="CENTER_LEFT" spacing="7.0">
+                                 <children>
+                                    <StackPane prefHeight="30.0" prefWidth="60.0">
+                                       <children>
+                                          <Button fx:id="btnPlay" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#playProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="▶" textFill="WHITE">
+                                             <font>
+                                                <Font name="Consolas" size="20.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnPause" alignment="CENTER" mnemonicParsing="false" onAction="#pauseProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⏸" textFill="WHITE">
+                                             <font>
+                                                <Font name="Consolas" size="24.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </StackPane>
+                                    <Button fx:id="btnStop" mnemonicParsing="false" onAction="#stopProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⏹" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets top="1.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Consolas" size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnSlow" mnemonicParsing="false" onAction="#slowProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⏪" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Consolas" size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnFast" mnemonicParsing="false" onAction="#fastProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⏩" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Consolas" size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnMinus" mnemonicParsing="false" onAction="#minusProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⬅" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Consolas" size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnPlus" mnemonicParsing="false" onAction="#plusProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="➡" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Consolas" size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <StackPane prefHeight="0.0" prefWidth="41.0">
+                                       <children>
+                                          <Label fx:id="volicon" onMouseClicked="#muteProc" prefHeight="24.0" prefWidth="24.0" style="-fx-padding: 0;" text="🔉" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="volmute" disable="true" onMouseClicked="#muteProc" prefHeight="24.0" prefWidth="24.0" style="-fx-padding: 0;" text="🔇" textFill="WHITE" visible="false">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <Slider fx:id="slider" blockIncrement="5.0" onMouseClicked="#volumnClickProc" onMouseDragged="#volumnDragProc" prefHeight="24.0" prefWidth="109.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Slider>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="12.0" right="12.0" top="5.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
                   </StackPane>
-                  <HBox alignment="CENTER_LEFT" spacing="7.0">
-                     <children>
-                        <StackPane prefHeight="0.0" prefWidth="42.0">
-                           <children>
-                              <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="▶" textFill="WHITE">
-                                 <font>
-                                    <Font name="Consolas" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="btnPause" mnemonicParsing="false" onAction="#pauseProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⏸" textFill="WHITE">
-                                 <font>
-                                    <Font name="Consolas" size="24.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </StackPane>
-                        <Button fx:id="btnStop" mnemonicParsing="false" onAction="#stopProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⏹" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Consolas" size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnSlow" mnemonicParsing="false" onAction="#slowProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⏪" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnFast" mnemonicParsing="false" onAction="#fastProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⏩" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnMinus" mnemonicParsing="false" onAction="#minusProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="⬅" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnPlus" mnemonicParsing="false" onAction="#plusProc" prefHeight="30.0" prefWidth="60.0" style="-fx-padding: 0; -fx-background-color: none;" text="➡" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                        </Button>
-                        <StackPane prefHeight="0.0" prefWidth="41.0">
-                           <children>
-                              <Label fx:id="volicon" onMouseClicked="#muteProc" prefHeight="24.0" prefWidth="24.0" style="-fx-padding: 0;" text="🔉" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="volmute" disable="true" onMouseClicked="#muteProc" prefHeight="24.0" prefWidth="24.0" style="-fx-padding: 0;" text="🔇" textFill="WHITE" visible="false">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <Slider fx:id="slider" blockIncrement="5.0" onMouseClicked="#volumnClickProc" onMouseDragged="#volumnDragProc" prefHeight="24.0" prefWidth="109.0">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Slider>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="12.0" right="12.0" top="5.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
                </children>
             </VBox>
          </children>

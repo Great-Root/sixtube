@@ -5,9 +5,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.CommentDTO;
+import model.VideoDTO;
 
 public class VideoStage {
 	
@@ -31,7 +33,7 @@ public class VideoStage {
 		stage.show();
 	}
 	
-	public void showVideoView(String videoId) {
+	public void showVideoView(ImageView iv) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("videoView.fxml"));
 		Parent root = null;
@@ -44,7 +46,7 @@ public class VideoStage {
 		
 		VideoController controller = loader.getController();
 		controller.setRoot(root);
-		controller.setVideo(videoId);
+		controller.setVideo(iv);
 		
 		
 		//비디오 뷰에서 X버튼 눌렀을 경우 비디오 정지 시키는 코드
