@@ -17,9 +17,9 @@
             <Font name="Batang" size="18.0" />
          </font></Label>
       <Button fx:id="btnCompl" layoutX="377.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#CompleteProc" onMouseEntered="#btnEntered" onMouseExited="#btnExited" prefHeight="39.0" prefWidth="121.0" style="-fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 25;" text="수정 완료" />
-      <ImageView fitHeight="72.0" fitWidth="179.0" layoutX="158.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="72.0" fitWidth="179.0" layoutX="169.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/google.PNG" />
+            <Image url="@../img/6Tube.PNG" />
          </image>
       </ImageView>
       <Line endX="711.0" endY="-40.0" layoutX="-702.0" layoutY="59.0" startX="711.0" startY="249.0" strokeWidth="0.2" />

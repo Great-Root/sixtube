@@ -15,9 +15,9 @@
 
 <AnchorPane fx:id="btnMenu" prefHeight="836.0" prefWidth="683.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="video.VideoListController">
    <children>
-      <ImageView fitHeight="61.0" fitWidth="111.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="89.0" layoutX="14.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/logo.PNG" />
+            <Image url="@../img/6Tube.PNG" />
          </image>
       </ImageView>
       <ImageView fitHeight="34.0" fitWidth="490.0" layoutX="103.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
@@ -218,10 +218,17 @@
       </VBox>
       <AnchorPane fx:id="paneSlide" layoutY="86.0" prefHeight="708.0" prefWidth="142.0" style="-fx-background-color: white;">
          <children>
-            <Button fx:id="btnModify" mnemonicParsing="false" onAction="#modifyProc" prefHeight="44.0" prefWidth="142.0" style="-fx-background-color: white;" text="회원 정보 수정" />
-            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btnModify" mnemonicParsing="false" onAction="#modifyProc" prefHeight="44.0" prefWidth="142.0" style="-fx-background-color: white;">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/setting2.PNG" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <ImageView fitHeight="255.0" fitWidth="161.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/setting.PNG" />
+                  <Image url="@../img/menu2.PNG" />
                </image>
             </ImageView>
          </children>

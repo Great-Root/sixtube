@@ -61,7 +61,7 @@
       <Button layoutX="209.0" layoutY="478.0" mnemonicParsing="false" onAction="#cancelProc" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 25;" text="취소" />
       <ImageView fitHeight="54.0" fitWidth="150.0" layoutX="125.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/google.PNG" />
+            <Image url="@../img/6Tube.PNG" />
          </image>
       </ImageView>
       <Line endX="245.0" layoutX="125.0" layoutY="15.0" opacity="0.4" startX="-110.0" />

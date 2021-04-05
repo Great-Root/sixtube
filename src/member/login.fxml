@@ -29,9 +29,9 @@
       <Button layoutX="82.0" layoutY="317.0" mnemonicParsing="false" onAction="#loginProc" prefHeight="30.0" prefWidth="69.0" style="-fx-background-color: white; -fx-border-radius: 25; -fx-border-color: grey;" text="로그인" />
       <Button layoutX="173.0" layoutY="317.0" mnemonicParsing="false" onAction="#cancelProc" prefHeight="30.0" prefWidth="69.0" style="-fx-background-color: white; -fx-border-radius: 25; -fx-border-color: grey;" text="취소" />
       <CheckBox fx:id="fxCheck" layoutX="266.0" layoutY="274.0" mnemonicParsing="false" text="ID 기억하기" />
-      <ImageView fitHeight="72.0" fitWidth="179.0" layoutX="113.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="72.0" fitWidth="179.0" layoutX="115.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/google.PNG" />
+            <Image url="@../img/6Tube.PNG" />
          </image>
       </ImageView>
       <Line endX="279.0" layoutX="113.0" layoutY="14.0" opacity="0.2" startX="-100.0" />
