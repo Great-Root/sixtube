@@ -27,19 +27,15 @@ public class MemberServiceImpl implements MemberService{
 			Controller.cs.alert("아이디를 입력하세요.");
 		} else {
 			String userId = id.getText();
-
 			MemberDAO ds = new MemberDAOImpl();
 			String dbPwd = ds.loginCheck(id.getText());
-
 			if (dbPwd == null) {
 				Controller.cs.alert("존재하지 않는 아이디입니다.");
 				id.clear();
 				pwd.clear();
 			} else {
 				if (dbPwd.equals(pwd.getText())) {
-
 					Controller.cs.exit(root);
-					// choi추가 id가져오기
 					Controller.lu.setUserId(id.getText());
 					result = true;
 				} else {

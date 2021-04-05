@@ -136,7 +136,6 @@ public class VideoController implements Initializable {
 	
 	public void setOnKeyPressed(KeyEvent e) {
 		setOnMouseMoved();
-		// 단축키 기능 코드
 		switch (e.getCode()) {
 		case SPACE:
 			if(isPlay) {
@@ -147,6 +146,7 @@ public class VideoController implements Initializable {
 				isPlay = true;
 			}
 			break;
+			
 		case RIGHT:
 			service.plusProc();
 			break;

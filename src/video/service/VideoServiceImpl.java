@@ -155,7 +155,11 @@ public class VideoServiceImpl implements VideoService {
 	@Override
 	public void setVideo(ImageView iv) {
 		VideoDTO dto = (VideoDTO)iv.getUserData();
-		//비디오 버튼들 포커스 이동 막는 코드
+		
+		Media media = new Media(getClass().getResource("../"+dto.getVpath()).toString());
+		videoPlayer = new MediaPlayer(media);
+		videoView.setMediaPlayer(videoPlayer);
+		
 		btnPlay.setFocusTraversable(false);
 		btnPause.setFocusTraversable(false);
 		btnStop.setFocusTraversable(false);
@@ -165,9 +169,6 @@ public class VideoServiceImpl implements VideoService {
 		btnFast.setFocusTraversable(false);
 		volBar.setFocusTraversable(false);
 		
-		Media media = new Media(getClass().getResource("../"+dto.getVpath()).toString());
-		videoPlayer = new MediaPlayer(media);
-		videoView.setMediaPlayer(videoPlayer);
 		
 		//비디오 플레이어 리스너 코드
 		volBar.valueProperty().addListener((ob,oldV,newV) -> {

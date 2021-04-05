@@ -47,22 +47,22 @@ public class VideoDAOImpl implements VideoDAO {
 		}
 		return list;
 	}
-	
+
 	@Override
 	public VideoDTO getVideo(int vnum) {
 		return null;
 	}
 
-	
+
 
 	@Override
 	public void addLikes(int vnum) {
-		
+
 	}
 
 	@Override
 	public void addViews(int vnum) {
-		
+
 	}
 
 	@Override
@@ -85,13 +85,11 @@ public class VideoDAOImpl implements VideoDAO {
 	@Override
 	public ArrayList<CommentDTO> getCommentList(int vnum) {
 		ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
-		String sql = "select * from comments where vnum = " + vnum + "order by cnum asc";
+		String sql = "select * from comments where vnum = " + vnum + "order by cnum desc";
 		try {
 			Connection con = DriverManager.getConnection(url, id, pw);
 			PreparedStatement ps = con.prepareStatement(sql);
-		
 			ResultSet rs = ps.executeQuery();
-			
 			while(rs.next()) {
 				CommentDTO dto = new CommentDTO(
 						rs.getInt("cnum"),
@@ -99,32 +97,25 @@ public class VideoDAOImpl implements VideoDAO {
 						rs.getString("comt"),
 						rs.getInt("vnum")
 						);
-				
 				list.add(dto);
 			}
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return list;
-		
-		
 	}
 
-	
+
 	@Override
 	public void commentsDelete(int cnum) {
-		
+
 		String sql = "delete from comments where cnum = " + cnum ;
-		
+
 		try {
 			Connection con = DriverManager.getConnection(url, id, pw);
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.executeUpdate();
-			
+
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -139,12 +130,11 @@ public class VideoDAOImpl implements VideoDAO {
 			Connection con = DriverManager.getConnection(url, id, pw);
 			PreparedStatement ps = con.prepareStatement(sql);
 			result = ps.executeUpdate() == 1 ? true: false;
-			
+
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
-
 }
 
